@@ -76,22 +76,45 @@ const FounderVoiceSection = () => {
     },
     startQuote: {
         position: 'absolute',
-        top: '-5px',
-        left: '-10px',
-        width: '40px',
-        height: '40px',
+        bottom: '-10px',
+        right: '-20px',
+        width: '25px',
+        height: '25px',
         zIndex: 0,
         opacity: 0.6,
+        filter: 'brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(40%) contrast(100%)',
+    },
+    startQuote2: {
+        position: 'absolute',
+        bottom: '-10px',
+        right: '-5px',
+        width: '25px',
+        height: '25px',
+        zIndex: 0,
+        opacity: 0.6,
+        filter: 'brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(40%) contrast(100%)',
     },
     endQuote: {
         position: 'absolute',
-        bottom: '-25px',
-        right: '-10px',
-        width: '40px',
-        height: '40px',
+        top: '-10px',
+        left: '-20px',
+        width: '25px',
+        height: '25px',
         transform: 'rotate(180deg)',
         zIndex: 0,
         opacity: 0.6,
+        filter: 'brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(40%) contrast(100%)',
+    },
+    endQuote2: {
+        position: 'absolute',
+        top: '-10px',
+        left: '-5px',
+        width: '25px',
+        height: '25px',
+        transform: 'rotate(180deg)',
+        zIndex: 0,
+        opacity: 0.6,
+        filter: 'brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(40%) contrast(100%)',
     },
     imageContainer: {
       flex: '0 1 350px', // Flex properties for responsiveness
@@ -116,12 +139,12 @@ const FounderVoiceSection = () => {
           <h2 style={styles.heading}>Voices That Drive Vision</h2>
           <div style={styles.quoteWrapper}>
             <img src={require('../images/comma.png')} alt="Opening quote" style={styles.startQuote} />
-            <img src={require('../images/comma.png')} alt="Opening quote 2" style={{...styles.startQuote, left: '10px'}} />
+            <img src={require('../images/comma.png')} alt="Opening quote 2" style={styles.startQuote2} />
             <p style={styles.quoteText}>
               Our vision is to use technology as a force multiplier not just for business growth, but for building a smarter, more sustainable world. We believe in leveraging AI, automation, and digital intelligence to create inclusive ecosystems where innovation empowers people, industries, and the planet.
             </p>
             <img src={require('../images/comma.png')} alt="Closing quote" style={styles.endQuote} />
-            <img src={require('../images/comma.png')} alt="Closing quote 2" style={{...styles.endQuote, right: '10px'}} />
+            <img src={require('../images/comma.png')} alt="Closing quote 2" style={styles.endQuote2} />
           </div>
           <div style={styles.authorContainer}>
             <p style={styles.authorName}>Swati Gupta, CEO founder</p>
