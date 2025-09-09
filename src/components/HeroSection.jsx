@@ -149,6 +149,8 @@ const HeroSection = () => {
       gap: '8px',
       color: '#ffffff',
       opacity: 0.7,
+      cursor: 'pointer',
+      transition: 'opacity 0.3s ease, transform 0.2s ease',
     },
     scrollText: {
       fontSize: '12px',
@@ -160,6 +162,15 @@ const HeroSection = () => {
   // but for a single component, we can use JS event handlers.
   const [primaryHover, setPrimaryHover] = React.useState(false);
   const [secondaryHover, setSecondaryHover] = React.useState(false);
+  const [scrollHover, setScrollHover] = React.useState(false);
+
+  // Function to handle scroll down action
+  const handleScrollDown = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  };
 
   const primaryButtonStyle = {
     ...styles.buttonBase,
@@ -168,11 +179,26 @@ const HeroSection = () => {
     boxShadow: primaryHover ? '0 0 20px rgba(255, 255, 255, 0.3)' : 'none',
   };
 
+  const arrowStyle = {
+    width: '24px', 
+    height: '24px', 
+    marginLeft: '8px',
+    transition: 'filter 0.3s ease, transform 0.3s ease',
+    filter: primaryHover ? 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)' : 'none',
+    transform: primaryHover ? 'translateX(3px)' : 'translateX(0)',
+  };
+
   const secondaryButtonStyle = {
     ...styles.buttonBase,
     ...styles.secondaryButton,
     transform: secondaryHover ? 'scale(1.03)' : 'scale(1)',
     backgroundColor: secondaryHover ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+  };
+
+  const scrollIndicatorStyle = {
+    ...styles.scrollIndicator,
+    opacity: scrollHover ? 1 : 0.7,
+    transform: scrollHover ? 'translateY(-3px)' : 'translateY(0)',
   };
 
 
@@ -198,7 +224,7 @@ const HeroSection = () => {
             onMouseEnter={() => setPrimaryHover(true)}
             onMouseLeave={() => setPrimaryHover(false)}
           >
-            Discover Our Ecosystem <EcosystemIcon />
+            Discover Our Ecosystem <img src={require('../images/arrow.png')} alt="Arrow" style={arrowStyle} />
           </button>
           <button
              style={secondaryButtonStyle}
@@ -210,7 +236,12 @@ const HeroSection = () => {
         </div>
       </main>
 
-      <div style={styles.scrollIndicator}>
+      <div 
+        style={scrollIndicatorStyle}
+        onClick={handleScrollDown}
+        onMouseEnter={() => setScrollHover(true)}
+        onMouseLeave={() => setScrollHover(false)}
+      >
         <MouseIcon />
         <span style={styles.scrollText}>Scroll Down</span>
       </div>

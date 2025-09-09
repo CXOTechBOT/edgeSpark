@@ -27,7 +27,7 @@ const StatsSection = () => {
     contentWrapper: {
       maxWidth: '1100px',
       margin: '0 auto',
-      textAlign: 'left',
+      textAlign: 'center', // Changed from 'left' to 'center'
     },
     heading: {
       fontSize: 'clamp(2.2rem, 5vw, 3rem)',
@@ -39,7 +39,7 @@ const StatsSection = () => {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', // Creates a responsive grid
       gap: '40px 20px', // Row and column gap
-      textAlign: 'left',
+      textAlign: 'left', // Keep stats aligned left for better readability
     },
     statItem: {
       display: 'flex',

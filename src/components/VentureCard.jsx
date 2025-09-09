@@ -2,22 +2,22 @@ import React from 'react';
 
 const ventures = [
   {
-    logo: 'https://cdn.example.com/ai-lifebot-logo.png', // Replace with the correct path to your logo image
+    logo: require('../images/ailifebot.png'),
     name: 'AI LifeBOT',
     description: 'GenAI-powered automation suite that revolutionizes customer service through Conversational AI, intelligent agents, and workflow automation.',
   },
   {
-    logo: 'https://cdn.example.com/appsolutely-logo.png', // Replace with the correct path to your logo image
+    logo: require('../images/absolutely.png'),
     name: 'Appsolutely',
     description: 'A premier AI consulting and development firm helping businesses accelerate digital transformation, automate complex processes, and unlock operational efficiency.',
   },
   {
-    logo: 'https://cdn.example.com/cxo-techbot-logo.png', // Replace with the correct path to your logo image
+    logo: require('../images/cxoTech.png'),
     name: 'CXO TechBOT',
     description: 'A leading tech media platform fostering thought leadership through CXO insights, innovation summits, and industry-focused content.',
   },
   {
-    logo: 'https://cdn.example.com/skillz4-logo.png', // Replace with the correct path to your logo image
+    logo: require('../images/skillza.png'),
     name: 'SKILLZ4',
     description: 'An AI-powered skilling and workforce development platform focused on future-ready learning, enabling upskilling, reskilling, and immersive job simulations for the next-gen workforce.',
   },
@@ -25,17 +25,15 @@ const ventures = [
 
 const VentureCard = ({ logo, name, description }) => (
   <div className="venture-card">
-    <div className="card-top-section">
+    <div className="card-content">
       <div className="card-logo">
-        {/* Placeholder for the image. In a real scenario, you'd use an actual <img> tag. */}
-        {/* For now, I'm using a span with text as the image is embedded in the description in your Image 1 */}
-        {/* If the logo is a separate image, use <img src={logo} alt={`${name} logo`} /> */}
-        {/* Based on Image 2, the logo is an actual image. */}
         <img src={logo} alt={`${name} logo`} />
       </div>
+      <div className="card-text-content">
+        <p className="card-description">{description}</p>
+      </div>
     </div>
-    <p className="card-description">{description}</p>
-    <a href="#" className="card-arrow-link"> {/* Added an anchor tag for clickable arrow */}
+    <a href="#" className="card-arrow-link">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -57,15 +55,16 @@ function InnovationEcosystem() {
         {`
           body {
             font-family: 'Inter', sans-serif; /* A common modern sans-serif font */
-            margin: 0;
+            margin-bottom: 0;
             padding: 0;
-            background-color: #f7f9fc; /* Light background as per screenshot */
+            background-color: #ffffffff; /* Light background as per screenshot */
           }
 
           .app-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
+            margin-bottom: 60px; /* Space at the bottom of the page */
           }
 
           .header-section {
@@ -81,7 +80,7 @@ function InnovationEcosystem() {
           }
 
           .sub-heading {
-            font-size: 1rem;
+            font-size: 1.1rem; /* Increased from 1rem */
             color: #4a5568; /* Grey text */
             max-width: 800px;
             margin: 0 auto;
@@ -104,13 +103,13 @@ function InnovationEcosystem() {
           .venture-card {
             position: relative; /* For absolute positioning of the arrow */
             display: flex;
-            flex-direction: column; /* Stack logo and description vertically */
+            flex-direction: column;
             padding: 24px; /* Padding inside the card */
-            background-color: #ffffff;
+            background-color: #f7f8fa;
             border-radius: 12px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            min-height: 180px; /* Ensure cards have a minimum height for consistent look */
+            min-height: 140px; /* Adjusted for horizontal layout */
           }
 
           .venture-card:hover {
@@ -118,26 +117,40 @@ function InnovationEcosystem() {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
           }
 
-          .card-top-section {
+          .card-content {
             display: flex;
-            align-items: center;
-            margin-bottom: 16px; /* Space between logo and description */
-            min-height: 40px; /* To prevent description from moving up if logo is smaller */
+            align-items: center; /* Vertically center items */
+            gap: 20px; /* Increased space between logo and text */
+            flex: 1;
+            padding-right: 50px; /* Space for arrow button */
+          }
+
+          .card-logo {
+            flex-shrink: 0; /* Prevent logo from shrinking */
+            width: 140px; /* Increased width for logo container */
+            display: flex;
+            align-items: center; /* Center logo vertically */
+            justify-content: center; /* Center logo horizontally */
           }
 
           .card-logo img {
-            max-width: 120px; /* Max width for logos */
+            width: 130px; /* Increased width for logos */
             height: auto; /* Maintain aspect ratio */
-            max-height: 32px; /* Max height for logos as per Image 2 */
+            max-height: 60px; /* Increased max height for logos */
             display: block; /* Remove extra space below image */
           }
 
+          .card-text-content {
+            flex: 1; /* Take remaining space */
+            display: flex;
+            align-items: center; /* Center text vertically */
+          }
+
           .card-description {
-            font-size: 0.95rem; /* Slightly larger font for description */
-            color: #4a5568; /* Darker grey for better readability */
-            line-height: 1.5;
-            flex-grow: 1; /* Allows description to take available space */
-            margin-bottom: 40px; /* Space above the arrow link if it were at bottom */
+            font-size: 0.9rem; /* Adjusted font size */
+            color: #000000; /* Changed to black */
+            line-height: 1.4;
+            margin: 0; /* Remove default margin */
           }
 
           .card-arrow-link {
@@ -153,17 +166,23 @@ function InnovationEcosystem() {
             background-color: #eff6ff; /* Light blue background for the circle */
             color: #2563eb; /* Darker blue for the arrow icon */
             text-decoration: none; /* Remove underline from link */
-            transition: background-color 0.2s ease-in-out;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
           }
 
-          .card-arrow-link:hover {
+          .venture-card:hover .card-arrow-link {
             background-color: #dbeafe; /* Slightly darker blue on hover */
+            transform: translateX(3px) translateY(-3px); /* Move towards top-right */
           }
 
           .arrow-icon {
             width: 20px;
             height: 20px;
             stroke-width: 2.5; /* Make arrow slightly bolder */
+            transition: transform 0.3s ease-in-out;
+          }
+
+          .venture-card:hover .arrow-icon {
+            transform: rotate(-45deg) scale(1.1); /* Rotate to point top-right and scale up */
           }
         `}
       </style>

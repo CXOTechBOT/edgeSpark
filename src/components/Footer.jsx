@@ -6,6 +6,17 @@ import React from 'react';
  */
 const Footer = () => {
 
+  // --- Smooth scroll functions ---
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   // --- Inline CSS Styles ---
   const styles = {
     container: {
@@ -55,6 +66,10 @@ const Footer = () => {
       marginBottom: '12px',
       fontSize: '0.95rem',
       cursor: 'pointer',
+      transition: 'color 0.2s ease',
+    },
+    linkItemHover: {
+      color: '#0a0f2c',
     },
     addressText: {
         fontSize: '0.95rem',
@@ -89,10 +104,38 @@ const Footer = () => {
         <div style={styles.column}>
           <h3 style={styles.heading}>Company</h3>
           <ul style={styles.linkList}>
-            <li style={styles.linkItem}>About us</li>
-            <li style={styles.linkItem}>Vision & Mission</li>
-            <li style={styles.linkItem}>Our Services</li>
-            <li style={styles.linkItem}>Contact Us</li>
+            <li 
+              style={styles.linkItem}
+              onClick={() => scrollToSection('about-section')}
+              onMouseOver={(e) => e.target.style.color = '#0a0f2c'}
+              onMouseOut={(e) => e.target.style.color = '#333d5a'}
+            >
+              About us
+            </li>
+            <li 
+              style={styles.linkItem}
+              onClick={() => scrollToSection('vision-mission-section')}
+              onMouseOver={(e) => e.target.style.color = '#0a0f2c'}
+              onMouseOut={(e) => e.target.style.color = '#333d5a'}
+            >
+              Vision & Mission
+            </li>
+            <li 
+              style={styles.linkItem}
+              onClick={() => scrollToSection('offerings-section')}
+              onMouseOver={(e) => e.target.style.color = '#0a0f2c'}
+              onMouseOut={(e) => e.target.style.color = '#333d5a'}
+            >
+              Our Services
+            </li>
+            <li 
+              style={styles.linkItem}
+              onClick={() => scrollToSection('contact-section')}
+              onMouseOver={(e) => e.target.style.color = '#0a0f2c'}
+              onMouseOut={(e) => e.target.style.color = '#333d5a'}
+            >
+              Contact Us
+            </li>
           </ul>
         </div>
 

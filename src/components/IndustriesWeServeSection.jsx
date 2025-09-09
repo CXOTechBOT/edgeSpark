@@ -86,7 +86,7 @@ function IndustriesWeServeSection() {
           }
 
           .section-description {
-            font-size: 1.1rem;
+            font-size: 1.5rem !important;
             color: #4a5568;
             line-height: 1.6;
           }
@@ -157,7 +157,7 @@ function IndustriesWeServeSection() {
           }
 
           .industry-card:hover .card-title {
-            color: #ffffff; /* White title color on hover */
+            color: #ffffff !important; /* White title color on hover */
           }
 
           .card-icon {

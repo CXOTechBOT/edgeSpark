@@ -74,7 +74,7 @@ function WhatDrivesUsSection() {
           }
 
           .section-description {
-            font-size: 1.25rem;
+            font-size: 2.1rem !important;
             color: #4a5568;
             line-height: 1.7;
           }
@@ -151,9 +151,9 @@ function WhatDrivesUsSection() {
           }
 
           .card-title { 
-            font-size: 92rem;
-            font-weight: 1900;
-            color: #1a202c;
+            font-size: 1.4rem !important;
+            font-weight: 700 !important;
+            color: #1a202c !important;
             margin-bottom: 14px;
             line-height: 1.3;
             letter-spacing: 0.3px;
@@ -166,7 +166,6 @@ function WhatDrivesUsSection() {
           }
         `}
       </style>
-                font-size: 2.2rem;
       <div className="what-drives-us-container">
         <div className="section-header">
           <h2 className="section-title">What Drives Us</h2>

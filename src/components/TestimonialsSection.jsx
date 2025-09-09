@@ -65,15 +65,16 @@ const TestimonialsSection = () => {
       marginBottom: '60px',
     },
     sliderContainer: {
-      maxWidth: '900px',
+      maxWidth: '900px', // Increased from 900px
       margin: '0 auto',
-      padding: '60px 80px',
+      padding: '80px 100px', // Increased padding
       backgroundColor: '#f0f4f8',
       borderRadius: '16px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
       position: 'relative',
+      minHeight: '150px', // Added minimum height for better proportion
     },
     testimonialContent: {
       textAlign: 'center',

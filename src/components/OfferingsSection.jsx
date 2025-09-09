@@ -38,7 +38,7 @@ const OfferingsSection = () => {
       fontWeight: '600',
       lineHeight: 1.2,
       marginBottom: '60px',
-      textAlign: 'left',
+      textAlign: 'center', // Changed from 'left' to 'center'
     },
     cardGrid: {
       display: 'grid',
