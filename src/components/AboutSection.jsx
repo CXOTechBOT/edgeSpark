@@ -34,8 +34,8 @@ const AboutSection = () => {
       textAlign: 'left',
     },
     imageContainer: {
-      flex: 1.6,
-      minWidth: '500px', // Ensures image container doesn't get too squished
+      flex: 1.5,
+      minWidth: '350px', // Ensures image container doesn't get too squished
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
