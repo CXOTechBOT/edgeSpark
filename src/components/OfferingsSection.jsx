@@ -8,15 +8,15 @@ const OfferingsSection = () => {
 
   // --- Data for the 9 offering cards ---
   const offerings = [
-    { title: 'AI & Business Automation', imgSrc: require('../images/9cardsImages/ai.jpeg') },
-    { title: 'Custom GenAI & Enterprise Copilots', imgSrc: require('../images/9cardsImages/aiandhuman.jpeg') },
-    { title: 'Sustainable AI & Green Tech', imgSrc: require('../images/9cardsImages/aiSustainability.jpeg') },
-    { title: 'Future-Ready Skilling & EdTech Solutions', imgSrc: require('../images/9cardsImages/4th.jpeg') },
-    { title: 'Digital Transformation & IT Consulting', imgSrc: require('../images/9cardsImages/digitaltransformation.jpeg') },
-    { title: 'Smart Governance & GovTech Solutions', imgSrc: require('../images/9cardsImages/futuristicvr.jpeg') },
-    { title: 'CXO Media, Branding & Thought Leadership', imgSrc: require('../images/9cardsImages/business-meeting-office.jpg') },
-    { title: 'Innovation Lab & Prototyping', imgSrc: require('../images/9cardsImages/innovation.jpeg') },
-    { title: 'CSR, Women Empowerment & Social Innovation', imgSrc: require('../images/9cardsImages/womenempowerment.jpeg') },
+    { title: 'AI & Business Automation', imgSrc: require('../images/what we offer images/Group 24322.png') },
+    { title: 'Custom GenAI & Enterprise Copilots', imgSrc: require('../images/what we offer images/Group 24323.png') },
+    { title: 'Sustainable AI & Green Tech', imgSrc: require('../images/what we offer images/Group 24324.png') },
+    { title: 'Future-Ready Skilling & EdTech Solutions', imgSrc: require('../images/what we offer images/Group 24327.png') },
+    { title: 'Digital Transformation & IT Consulting', imgSrc: require('../images/what we offer images/Group 24326.png') },
+    { title: 'Smart Governance & GovTech Solutions', imgSrc: require('../images/what we offer images/Group 24325.png') },
+    { title: 'CXO Media, Branding & Thought Leadership', imgSrc: require('../images/what we offer images/Group 24330@2x.png') },
+    { title: 'Innovation Lab & Prototyping', imgSrc: require('../images/what we offer images/Group 24329.png') },
+    { title: 'CSR, Women Empowerment & Social Innovation', imgSrc: require('../images/what we offer images/Group 24328.png') },
   ];
 
   // --- Inline CSS Styles ---

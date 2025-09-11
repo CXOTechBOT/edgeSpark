@@ -1,48 +1,61 @@
 import React from 'react';
 
+// Import SVG icons from industries Edgespark folder
+import bfsiIcon from '../images/industries Edgespark/Group 24274.svg';
+import communicationIcon from '../images/industries Edgespark/communication_12687930.svg';
+import energyIcon from '../images/industries Edgespark/Icon.svg';
+import healthIcon from '../images/industries Edgespark/Group 23639.svg';
+import supplyChainIcon from '../images/industries Edgespark/Group 24285.svg';
+import retailIcon from '../images/industries Edgespark/Group 23714.svg';
+import technologyIcon from '../images/industries Edgespark/processing_18739369.svg';
+import hospitalityIcon from '../images/industries Edgespark/Group 24284.svg';
+import educationIcon from '../images/industries Edgespark/Layer_x0020_1.svg';
+import agricultureIcon from '../images/industries Edgespark/Group 24288.svg';
+import governmentIcon from '../images/industries Edgespark/Group 24289.svg';
+
 const industries = [
   {
-    icon: <img src={require('../images/icons Indutries/banking.png')} alt="BFSI" style={{width: 48, height: 48}} />,
+    icon: <img src={bfsiIcon} alt="BFSI" style={{width: 48, height: 48, objectFit: 'contain', display: 'block'}} />,
     title: 'BFSI (Banking, Financial Services & Insurance)',
   },
   {
-    icon: <img src={require('../images/icons Indutries/communication.png')} alt="Communications, Media & Entertainment" style={{width: 48, height: 48}} />,
+    icon: <img src={communicationIcon} alt="Communications, Media & Entertainment" style={{width: 48, height: 48, objectFit: 'contain', display: 'block'}} />,
     title: 'Communications, Media & Entertainment',
   },
   {
-    icon: <img src={require('../images/icons Indutries/utilities.png')} alt="Energy & Utilities" style={{width: 48, height: 48}} />,
+    icon: <img src={energyIcon} alt="Energy & Utilities" style={{width: 48, height: 48, objectFit: 'contain', display: 'block'}} />,
     title: 'Energy & Utilities',
   },
   {
-    icon: <img src={require('../images/icons Indutries/health.png')} alt="Health & Pharma" style={{width: 48, height: 48}} />,
+    icon: <img src={healthIcon} alt="Health & Pharma" style={{width: 48, height: 48, objectFit: 'contain', display: 'block'}} />,
     title: 'Health & Pharma',
   },
   {
-    icon: <img src={require('../images/icons Indutries/supplychain.png')} alt="Supply Chain & Logistics" style={{width: 48, height: 48}} />,
+    icon: <img src={supplyChainIcon} alt="Supply Chain & Logistics" style={{width: 48, height: 48, objectFit: 'contain', display: 'block'}} />,
     title: 'Supply Chain & Logistics',
   },
   {
-    icon: <img src={require('../images/icons Indutries/retail.png')} alt="Ecommerce & Retail" style={{width: 48, height: 48}} />,
+    icon: <img src={retailIcon} alt="Ecommerce & Retail" style={{width: 48, height: 48, objectFit: 'contain', display: 'block'}} />,
     title: 'Ecommerce & Retail',
   },
   {
-    icon: <img src={require('../images/icons Indutries/consulting.png')} alt="Technology & Consulting" style={{width: 48, height: 48}} />,
+    icon: <img src={technologyIcon} alt="Technology & Consulting" style={{width: 48, height: 48, objectFit: 'contain', display: 'block'}} />,
     title: 'Technology & Consulting',
   },
   {
-    icon: <img src={require('../images/icons Indutries/hospitality.png')} alt="Travel & Hospitality" style={{width: 48, height: 48}} />,
+    icon: <img src={hospitalityIcon} alt="Travel & Hospitality" style={{width: 48, height: 48, objectFit: 'contain', display: 'block'}} />,
     title: 'Travel & Hospitality',
   },
   {
-    icon: <img src={require('../images/icons Indutries/education.png')} alt="Education & Technology" style={{width: 48, height: 48}} />,
+    icon: <img src={educationIcon} alt="Education & Technology" style={{width: 48, height: 48, objectFit: 'contain', display: 'block'}} />,
     title: 'Education & Technology',
   },
   {
-    icon: <img src={require('../images/icons Indutries/agriculture.png')} alt="Agriculture" style={{width: 48, height: 48}} />,
+    icon: <img src={agricultureIcon} alt="Agriculture" style={{width: 48, height: 48, objectFit: 'contain', display: 'block'}} />,
     title: 'Agriculture',
   },
   {
-    icon: <img src={require('../images/icons Indutries/government.png')} alt="Government & Public Services" style={{width: 48, height: 48}} />,
+    icon: <img src={governmentIcon} alt="Government & Public Services" style={{width: 48, height: 48, objectFit: 'contain', display: 'block'}} />,
     title: 'Government & Public Services',
   },
 ];

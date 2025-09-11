@@ -91,7 +91,7 @@ const Footer = () => {
         
         {/* Column 1: Logo and Info */}
         <div style={styles.logoColumn}>
-          <div style={styles.logo}>LOGO</div>
+          {/* <div style={styles.logo}>LOGOssssss</div> */}
           <p style={styles.infoText}>
             EdgeSpark, AI LifeBOT, Appsolutely.ai, CXO TechBOT, and Skillzza are trademarks of the EdgeSpark Group.
           </p>

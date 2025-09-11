@@ -152,7 +152,7 @@ const FounderVoiceSection = () => {
           </div>
         </div>
         <div style={styles.imageContainer}>
-          <img src={require('../images/swatiMam.png')} alt="Swati Gupta, CEO founder" style={styles.image} />
+          <img src={require('../images/Group 24321.png')} alt="Swati Gupta, CEO founder" style={styles.image} />
         </div>
       </div>
     </div>

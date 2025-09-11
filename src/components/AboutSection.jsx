@@ -34,8 +34,8 @@ const AboutSection = () => {
       textAlign: 'left',
     },
     imageContainer: {
-      flex: 1,
-      minWidth: '300px', // Ensures image container doesn't get too squished
+      flex: 1.6,
+      minWidth: '500px', // Ensures image container doesn't get too squished
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -87,7 +87,7 @@ const AboutSection = () => {
         </div>
         <div style={styles.imageContainer}>
           <img
-            src={require('../images/business-meeting-office.jpg')}
+            src={require('../images/Mask Group 1.png')}
             alt="Business Meeting Office"
             style={styles.image}
           />

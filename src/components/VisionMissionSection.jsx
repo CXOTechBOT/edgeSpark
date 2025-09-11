@@ -1,5 +1,9 @@
 import React from 'react';
 
+// Import icons
+import visionIcon from '../images/Path 8.svg';
+import missionIcon from '../images/target_4147788.svg';
+
 /**
  * A "Vision and Mission" section component with a multi-column layout.
  * All styles are inline for easy integration.
@@ -7,25 +11,21 @@ import React from 'react';
  */
 const VisionMissionSection = () => {
 
-  // --- SVG Icons ---
+  // --- Icon Components ---
   const VisionIcon = () => (
-    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="22" cy="32" r="10" stroke="white" strokeWidth="2"/>
-      <circle cx="42" cy="32" r="10" stroke="white" strokeWidth="2"/>
-      <path d="M32 32L32 26" stroke="white" strokeWidth="2"/>
-      <path d="M32 38L32 32" stroke="white" strokeWidth="2"/>
-      <path d="M22 22L18 18" stroke="white" strokeWidth="2"/>
-      <path d="M46 18L42 22" stroke="white" strokeWidth="2"/>
-    </svg>
+    <img 
+      src={visionIcon} 
+      alt="Vision" 
+      style={{width: '64px', height: '64px', objectFit: 'contain'}} 
+    />
   );
 
   const MissionIcon = () => (
-    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="32" cy="32" r="18" stroke="white" strokeWidth="2"/>
-      <circle cx="32" cy="32" r="12" stroke="white" strokeWidth="2"/>
-      <circle cx="32" cy="32" r="6" stroke="white" strokeWidth="2"/>
-      <circle cx="32" cy="32" r="2" fill="white"/>
-    </svg>
+    <img 
+      src={missionIcon} 
+      alt="Mission" 
+      style={{width: '64px', height: '64px', objectFit: 'contain'}} 
+    />
   );
 
 
@@ -64,8 +64,8 @@ const VisionMissionSection = () => {
       flexWrap: 'wrap', // Allows columns to stack on smaller screens
     },
     imageColumn: {
-      flex: '1.5',
-      minWidth: '320px',
+      flex: '2',
+      minWidth: '400px',
     },
     textColumnsWrapper: {
       flex: '2',
@@ -114,7 +114,7 @@ const VisionMissionSection = () => {
       <div style={styles.contentGrid}>
         <div style={styles.imageColumn}>
           <img
-            src={require('../images/missionVission.png')}
+            src={require('../images/global-team-discussing-business-strategy.png')}
             alt="Mission"
             style={styles.image}
           />

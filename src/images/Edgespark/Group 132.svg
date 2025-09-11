@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="203" height="64" viewBox="0 0 203 64">
+  <g id="Group_132" data-name="Group 132" transform="translate(-880 -9473)">
+    <rect id="Rectangle_1" data-name="Rectangle 1" width="203" height="64" rx="8" transform="translate(880 9473)" fill="#0a00b7"/>
+    <g id="Group_131" data-name="Group 131" transform="translate(5)">
+      <text id="Submit" transform="translate(949 9513)" fill="#fff" font-size="20" font-family="OpenSans-Semibold, Open Sans" font-weight="600"><tspan x="-34" y="0">Submit</tspan></text>
+      <g id="Group_9" data-name="Group 9" transform="translate(1002.31 9488)">
+        <circle id="Ellipse_1" data-name="Ellipse 1" cx="18" cy="18" r="18" transform="translate(-0.31)" fill="#fff"/>
+        <g id="_2" data-name="2" transform="translate(15.631 30.031) rotate(-135)">
+          <path id="Path_1" data-name="Path 1" d="M.995,20.365a.912.912,0,0,1-.995-.8V.8A.912.912,0,0,1,.995,0a.912.912,0,0,1,.995.8V19.569A.912.912,0,0,1,.995,20.365Z" transform="translate(6.523)" fill="#0a00b7"/>
+          <path id="Path_2" data-name="Path 2" d="M7.517,10.393a.723.723,0,0,1-.562-.291L.233,1.7a1.178,1.178,0,0,1,0-1.406.689.689,0,0,1,1.125,0l6.159,7.7,6.159-7.7a.689.689,0,0,1,1.125,0,1.178,1.178,0,0,1,0,1.406L8.08,10.1A.723.723,0,0,1,7.517,10.393Z" transform="translate(0 9.972)" fill="#0a00b7"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
