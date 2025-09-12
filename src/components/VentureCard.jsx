@@ -2,22 +2,22 @@ import React from 'react';
 
 const ventures = [
   {
-    logo: require('../images/ailifebot.png'),
+    logo: require('../images/Edgespark/Image 1@2x.png'),
     name: 'AI LifeBOT',
     description: 'GenAI-powered automation suite that revolutionizes customer service through Conversational AI, intelligent agents, and workflow automation.',
   },
   {
-    logo: require('../images/absolutely.png'),
+    logo: require('../images/Edgespark/Gemini_Generated_Image_xkrmc5xkrmc5xkrm.png'),
     name: 'Appsolutely',
     description: 'A premier AI consulting and development firm helping businesses accelerate digital transformation, automate complex processes, and unlock operational efficiency.',
   },
   {
-    logo: require('../images/cxoTech.png'),
+    logo: require('../images/Edgespark/Image 6.png'),
     name: 'CXO TechBOT',
     description: 'A leading tech media platform fostering thought leadership through CXO insights, innovation summits, and industry-focused content.',
   },
   {
-    logo: require('../images/skillza.png'),
+    logo: require('../images/Edgespark/Image 7.png'),
     name: 'SKILLZ4',
     description: 'An AI-powered skilling and workforce development platform focused on future-ready learning, enabling upskilling, reskilling, and immersive job simulations for the next-gen workforce.',
   },
@@ -82,7 +82,7 @@ function InnovationEcosystem() {
           .sub-heading {
             font-size: 1.1rem; /* Increased from 1rem */
             color: #4a5568; /* Grey text */
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             line-height: 1.6;
           }
@@ -135,8 +135,8 @@ function InnovationEcosystem() {
 
           .card-logo img {
             width: 130px; /* Increased width for logos */
-            height: auto; /* Maintain aspect ratio */
-            max-height: 60px; /* Increased max height for logos */
+            height: 100px; /* Maintain aspect ratio */
+            max-height: 100px; /* Increased max height for logos */
             display: block; /* Remove extra space below image */
           }
 
@@ -191,7 +191,7 @@ function InnovationEcosystem() {
         <div className="header-section">
           <h1 className="main-heading">Explore Our Innovation Ecosystem</h1>
           <p className="sub-heading">
-            From AI automation to media excellence, our several innovative ventures are built to reshape industries. Each venture is mission-driven, impact-oriented, and future-ready.
+            From AI automation to media excellence, our several innovative ventures are built to reshape industries. <br />Each venture is mission-driven, impact-oriented, and future-ready.
           </p>
         </div>
 

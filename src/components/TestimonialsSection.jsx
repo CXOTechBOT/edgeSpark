@@ -142,7 +142,8 @@ const TestimonialsSection = () => {
   return (
     <div style={styles.container}>
       <h2 style={styles.heading}>
-        Customer Speaks..Real Stories.
+        Customer Speaks..
+        <br />Real Stories.
         <br />
         Real Impact.
       </h2>

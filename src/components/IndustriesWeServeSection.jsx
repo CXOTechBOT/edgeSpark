@@ -226,7 +226,7 @@ function IndustriesWeServeSection() {
           <h2 className="section-title">Industries We Serve</h2>
           <p className="section-description">
             We deliver value across a diverse range of industries, helping businesses
-            achieve their digital transformation goals:
+            achieve their digital transformation goals
           </p>
         </div>
 

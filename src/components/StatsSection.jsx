@@ -1,12 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
-/**
- * A statistics section component to highlight key metrics.
- * All styles are inline for easy integration.
- */
+const AnimatedNumber = ({ value, duration = 2200, animate }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!animate) {
+      setCount(0);
+      return;
+    }
+    const target = parseInt(value.replace(/\D/g, ''), 10);
+    if (!target) return setCount(value);
+    let start = 0;
+    const increment = Math.ceil(target / (duration / 40)); // slower
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(value);
+        clearInterval(timer);
+      } else {
+        setCount(start + '+');
+      }
+    }, 40);
+    return () => clearInterval(timer);
+  }, [value, duration, animate]);
+
+  return <span>{count}</span>;
+};
+
 const StatsSection = () => {
+  const sectionRef = useRef(null);
+  const [animate, setAnimate] = useState(false);
 
-  // --- Data for the stats for easy modification ---
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimate(true);
+        } else {
+          setAnimate(false);
+        }
+      },
+      { threshold: 0.4 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   const stats = [
     { number: '200+', line1: 'Clients Served', line2: 'Globally' },
     { number: '50+', line1: 'Experts &', line2: 'Innovators' },
@@ -14,12 +53,11 @@ const StatsSection = () => {
     { number: '25+', line1: 'Years of Core Tech', line2: 'Expertise' },
   ];
 
-  // --- Inline CSS Styles ---
   const styles = {
     container: {
       width: '100%',
       padding: '80px 50px',
-      backgroundColor: '#0a0f2c', // Dark blue background from previous sections
+      backgroundColor: '#0a0f2c',
       fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
       color: '#ffffff',
       boxSizing: 'border-box',
@@ -27,7 +65,7 @@ const StatsSection = () => {
     contentWrapper: {
       maxWidth: '1100px',
       margin: '0 auto',
-      textAlign: 'center', // Changed from 'left' to 'center'
+      textAlign: 'center',
     },
     heading: {
       fontSize: 'clamp(2.2rem, 5vw, 3rem)',
@@ -37,9 +75,9 @@ const StatsSection = () => {
     },
     statsGrid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', // Creates a responsive grid
-      gap: '40px 20px', // Row and column gap
-      textAlign: 'left', // Keep stats aligned left for better readability
+      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+      gap: '40px 20px',
+      textAlign: 'left',
     },
     statItem: {
       display: 'flex',
@@ -61,15 +99,16 @@ const StatsSection = () => {
     },
   };
 
-  // --- Rendered Component ---
   return (
-    <div style={styles.container}>
+    <div style={styles.container} ref={sectionRef}>
       <div style={styles.contentWrapper}>
         <h2 style={styles.heading}>From Spark to Scale</h2>
         <div style={styles.statsGrid}>
           {stats.map((stat, index) => (
             <div key={index} style={styles.statItem}>
-              <p style={styles.statNumber}>{stat.number}</p>
+              <p style={styles.statNumber}>
+                <AnimatedNumber value={stat.number} duration={2200} animate={animate} />
+              </p>
               <p style={styles.statText}>
                 {stat.line1} <br /> {stat.line2}
               </p>

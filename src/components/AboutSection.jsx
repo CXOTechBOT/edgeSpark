@@ -34,7 +34,7 @@ const AboutSection = () => {
       textAlign: 'left',
     },
     imageContainer: {
-      flex: 1.5,
+      flex: 1.2,
       minWidth: '350px', // Ensures image container doesn't get too squished
       display: 'flex',
       alignItems: 'center',
@@ -68,17 +68,20 @@ const AboutSection = () => {
       <div style={styles.contentWrapper}>
         <div style={styles.textContainer}>
           <h2 style={styles.heading}>
-            EdgeSpark IT Ventures: Building What's Next
+            EdgeSpark IT Ventures
           </h2>
+          <div style={{ fontSize: '1.35rem', fontWeight: '600', marginBottom: '24px', color: '#2c3033ff' }}>
+    Building What's Next
+  </div>
           <p style={styles.paragraph}>
             EdgeSpark is a future-forward venture studio powering
-            businesses at the intersection of AI, technology, media, and
-            education.
+            businesses at the intersection of AI,<b>Technology</b> , <b>Media</b> , and
+            <b>Education</b>.
           </p>
           <p style={styles.paragraph}>
-            We don’t just keep up with innovation—we lead it. Through
-            our specialized verticals, we deliver intelligent, scalable, and
-            sustainable solutions that drive real-world impact.
+            We don’t just keep up with innovation, we lead it. Through
+            our specialized verticals, we deliver <b>Intelligent</b>, <b>Scalable</b>, and
+            <b> Sustainable Solutions</b> that drive real-world impact.
           </p>
           <p style={styles.paragraph}>
             From automation to upskilling, we help

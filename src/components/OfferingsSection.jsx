@@ -14,7 +14,7 @@ const OfferingsSection = () => {
     { title: 'Future-Ready Skilling & EdTech Solutions', imgSrc: require('../images/what we offer images/Group 24327.png') },
     { title: 'Digital Transformation & IT Consulting', imgSrc: require('../images/what we offer images/Group 24326.png') },
     { title: 'Smart Governance & GovTech Solutions', imgSrc: require('../images/what we offer images/Group 24325.png') },
-    { title: 'CXO Media, Branding & Thought Leadership', imgSrc: require('../images/what we offer images/Group 24330@2x.png') },
+    { title: 'CXO Media, Branding & Thought Leadership', imgSrc: require('../images/business-meeting-office.jpg') },
     { title: 'Innovation Lab & Prototyping', imgSrc: require('../images/what we offer images/Group 24329.png') },
     { title: 'CSR, Women Empowerment & Social Innovation', imgSrc: require('../images/what we offer images/Group 24328.png') },
   ];

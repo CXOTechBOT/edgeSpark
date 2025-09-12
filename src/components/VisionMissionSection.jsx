@@ -109,7 +109,7 @@ const VisionMissionSection = () => {
   return (
     <div style={styles.container}>
       <h2 style={styles.heading}>
-        Driven by Purpose. <br /> Fueled by Innovation.
+        Driven by Purpose. <br /> Fueled by Innovation..
       </h2>
       <div style={styles.contentGrid}>
         <div style={styles.imageColumn}>
