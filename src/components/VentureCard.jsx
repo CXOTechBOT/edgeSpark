@@ -53,11 +53,16 @@ function InnovationEcosystem() {
     <>
       <style>
         {`
+          * {
+            box-sizing: border-box; /* Ensure all elements use border-box sizing */
+          }
+
           body {
             font-family: 'Inter', sans-serif; /* A common modern sans-serif font */
-            margin-bottom: 0;
+            margin: 0;
             padding: 0;
             background-color: #ffffffff; /* Light background as per screenshot */
+            overflow-x: hidden; /* Prevent horizontal scroll */
           }
 
           .app-container {
@@ -65,6 +70,7 @@ function InnovationEcosystem() {
             margin: 0 auto;
             padding: 40px 20px;
             margin-bottom: 60px; /* Space at the bottom of the page */
+            overflow-x: hidden; /* Prevent horizontal overflow */
           }
 
           .header-section {
@@ -96,6 +102,14 @@ function InnovationEcosystem() {
           @media (max-width: 768px) {
             .ventures-grid {
               grid-template-columns: 1fr;
+            }
+            
+            .main-heading {
+              font-size: 2rem;
+            }
+            
+            .sub-heading {
+              font-size: 1rem;
             }
           }
 
@@ -138,6 +152,7 @@ function InnovationEcosystem() {
             height: 100px; /* Maintain aspect ratio */
             max-height: 100px; /* Increased max height for logos */
             display: block; /* Remove extra space below image */
+            object-fit: contain; /* Maintain aspect ratio */
           }
 
           .card-text-content {
@@ -183,6 +198,74 @@ function InnovationEcosystem() {
 
           .venture-card:hover .arrow-icon {
             transform: rotate(-45deg) scale(1.1); /* Rotate to point top-right and scale up */
+          }
+
+          /* --- Mobile Layout (Phone Screen) --- */
+          @media (max-width: 480px) {
+            .app-container {
+              padding: 40px 15px; /* Reduced horizontal padding to make more space */
+            }
+
+            .venture-card {
+              min-height: auto;
+              padding: 0; /* Remove padding for mobile stacked layout */
+              width: 100%; /* Ensure full width */
+              max-width: 100%; /* Prevent overflow */
+            }
+
+            .card-content {
+              flex-direction: column; /* Stack image on top, text below */
+              align-items: stretch;
+              gap: 0;
+              padding-right: 0;
+              width: 100%; /* Full width */
+            }
+
+            .card-logo {
+              width: 100%; /* Full width for mobile */
+              padding: 40px 20px; /* More padding for larger image area */
+              background-color: #f7f8fa; /* Keep the same background */
+              border-radius: 12px 12px 0 0; /* Round top corners only */
+              justify-content: center;
+              display: flex;
+              align-items: center;
+              min-height: 180px; /* Minimum height for image section */
+            }
+
+            .card-logo img {
+              width: min(200px, 80vw); /* Larger image but responsive to screen width */
+              height: min(150px, 60vw); /* Larger height but responsive */
+              max-width: 80vw; /* Never exceed 80% of viewport width */
+              max-height: 60vw; /* Maintain aspect ratio */
+              object-fit: contain; /* Maintain aspect ratio without distortion */
+            }
+
+            .card-text-content {
+              padding: 20px; /* Add padding for text content */
+              background-color: white; /* White background for text */
+              border-radius: 0 0 12px 12px; /* Round bottom corners only */
+              align-items: flex-start; /* Align text to start */
+              width: 100%; /* Full width */
+            }
+
+            .card-description {
+              text-align: left; /* Left align text */
+              font-size: 0.85rem; /* Slightly smaller text */
+              line-height: 1.5;
+              width: 100%; /* Full width for text */
+            }
+
+            .card-arrow-link {
+              bottom: 16px; /* Adjust position for mobile */
+              right: 16px;
+              width: 36px; /* Slightly smaller on mobile */
+              height: 36px;
+            }
+
+            .arrow-icon {
+              width: 18px;
+              height: 18px;
+            }
           }
         `}
       </style>
