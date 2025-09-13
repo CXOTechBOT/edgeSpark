@@ -1,10 +1,8 @@
 import React from 'react';
 
 /**
- * A full-screen hero section component based on the provided design.
+ * A full-screen hero section component with video background.
  * All styles are inline for easy integration.
- * Note: For the best font match, consider adding a font like 'Inter' or 'Poppins' to your project.
- * This component uses the system's default sans-serif font as a fallback.
  */
 const HeroSection = () => {
 
@@ -12,7 +10,6 @@ const HeroSection = () => {
 
   const EcosystemIcon = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'translateY(1px)' }}>
-      {/* A stylized icon to represent an ecosystem */}
       <path d="M17.6569 17.6569C16.2929 19.0209 14.2071 19.8284 12 19.8284C9.79289 19.8284 7.70711 19.0209 6.34315 17.6569C4.97918 16.2929 4.17157 14.2071 4.17157 12C4.17157 9.79289 4.97918 7.70711 6.34315 6.34315C7.70711 4.97918 9.79289 4.17157 12 4.17157C14.2071 4.17157 16.2929 4.97918 17.6569 6.34315" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
       <path d="M12 2V4" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
       <path d="M12 20V22" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
@@ -30,7 +27,6 @@ const HeroSection = () => {
 
   const ArrowIcon = () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'translateY(-1px)' }}>
-       {/* A standard top-right arrow icon */}
       <path d="M7 17L17 7"></path>
       <path d="M7 7h10v10"></path>
     </svg>
@@ -38,13 +34,15 @@ const HeroSection = () => {
 
   const MouseIcon = () => (
     <svg width="24" height="36" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-       {/* An animated scroll-down mouse icon */}
       <rect x="1" y="1" width="22" height="34" rx="11" stroke="white" strokeWidth="1.5"/>
       <circle cx="12" cy="10" r="2" fill="white">
         <animate attributeName="cy" from="10" to="18" dur="1.5s" repeatCount="indefinite" />
       </circle>
     </svg>
   );
+
+  // --- Video loading state ---
+  const [videoLoaded, setVideoLoaded] = React.useState(false);
 
   // --- Inline CSS Styles ---
   const styles = {
@@ -55,20 +53,41 @@ const HeroSection = () => {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#030303',
-      backgroundImage: 'radial-gradient(ellipse 50% 40% at 10% 100%, rgba(46, 49, 146, 0.3), transparent)',
+      position: 'relative',
       color: '#ffffff',
       fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
       padding: '2rem',
       boxSizing: 'border-box',
-      position: 'relative',
       overflow: 'hidden',
+      // Fallback background
+      background: 'radial-gradient(circle at center, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%), #0f172a',
+    },
+    videoBackground: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      zIndex: 1, // Changed from -2 to 1 to make it visible
+      opacity: videoLoaded ? 1 : 0, // Changed from 0.8 to 1 for full visibility
+      transition: 'opacity 1s ease-in-out',
+    },
+    overlay: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      background: 'rgba(0, 0, 0, 0.4)', // Simplified overlay for better video visibility
+      zIndex: 2, // Above video but below content
     },
     header: {
       position: 'absolute',
       top: '40px',
       left: '50px',
       textAlign: 'left',
+      zIndex: 20, // Increased z-index to ensure it's above video and overlay
     },
     logoMain: {
       fontSize: '22px',
@@ -88,6 +107,7 @@ const HeroSection = () => {
       flexDirection: 'column',
       alignItems: 'center',
       maxWidth: '1000px',
+      zIndex: 20, // Increased z-index to ensure it's above video and overlay
     },
     heading: {
       fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
@@ -151,6 +171,7 @@ const HeroSection = () => {
       opacity: 0.7,
       cursor: 'pointer',
       transition: 'opacity 0.3s ease, transform 0.2s ease',
+      zIndex: 20, // Increased z-index to ensure it's above video and overlay
     },
     scrollText: {
       fontSize: '12px',
@@ -158,18 +179,25 @@ const HeroSection = () => {
     },
   };
 
-  // Hover effect styles would ideally be handled with CSS classes or a library,
-  // but for a single component, we can use JS event handlers.
   const [primaryHover, setPrimaryHover] = React.useState(false);
   const [secondaryHover, setSecondaryHover] = React.useState(false);
   const [scrollHover, setScrollHover] = React.useState(false);
 
-  // Function to handle scroll down action
   const handleScrollDown = () => {
     window.scrollTo({
       top: window.innerHeight,
       behavior: 'smooth'
     });
+  };
+
+  const handleVideoLoad = () => {
+    console.log('Blue smoke video loaded successfully');
+    setVideoLoaded(true);
+  };
+
+  const handleVideoError = (e) => {
+    console.error('Video failed to load:', e.target.error);
+    setVideoLoaded(false);
   };
 
   const primaryButtonStyle = {
@@ -201,10 +229,27 @@ const HeroSection = () => {
     transform: scrollHover ? 'translateY(-3px)' : 'translateY(0)',
   };
 
-
-  // --- Rendered Component ---
   return (
     <div style={styles.container}>
+      {/* Video Background - Blue Smoke Effect */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={styles.videoBackground}
+        onLoadedData={handleVideoLoad}
+        onError={handleVideoError}
+        onCanPlay={() => console.log('Blue smoke video can play')}
+        preload="auto"
+      >
+        <source src={require('../images/bluesmokeffect.mp4')} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      
+      {/* Dark overlay for better text readability */}
+      <div style={styles.overlay}></div>
+
       <header style={styles.header}>
         <p style={styles.logoMain}>EdgeSpark</p>
         <p style={styles.logoSub}>IT Ventures Private Limited</p>
