@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 /**
  * A component to feature quotes from key people, like CEO or founder.
  * All styles are inline and the component is self-contained.
  * Updated with carousel functionality for multiple voices.
+ * Mobile/tablet responsive with stacked layout.
  */
 const FounderVoiceSection = () => {
 
   // --- Carousel State ---
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // --- Check screen size ---
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 1024); // Tablet and below
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   // --- Content Data ---
   const voices = [
@@ -25,23 +38,23 @@ const FounderVoiceSection = () => {
       quote: "At EdgeSpark, we don't just build solutions, we engineer the future. Our focus is on creating intelligent, sustainable, and human-centered innovations that empower organizations to lead with clarity and confidence in the age of Al. Every experience we deliver is designed to spark transformation that lasts.",
       authorName: "Puneet Agarwal, Co-Founder",
       authorTitle: "EdgeSpark Group of Companies",
-      image: require('../images/PuneetSir.png') // You can change this image
+      image: require('../images/PuneetSir.png')
     }
   ];
 
   // --- Navigation Functions ---
   const goToNext = () => {
-    if (isTransitioning) return; // Prevent multiple clicks during transition
+    if (isTransitioning || isMobile) return; // Prevent on mobile
     setIsTransitioning(true);
     setCurrentSlide((prev) => (prev + 1) % voices.length);
-    setTimeout(() => setIsTransitioning(false), 600); // Match transition duration
+    setTimeout(() => setIsTransitioning(false), 600);
   };
 
   const goToPrev = () => {
-    if (isTransitioning) return; // Prevent multiple clicks during transition
+    if (isTransitioning || isMobile) return; // Prevent on mobile
     setIsTransitioning(true);
     setCurrentSlide((prev) => (prev - 1 + voices.length) % voices.length);
-    setTimeout(() => setIsTransitioning(false), 600); // Match transition duration
+    setTimeout(() => setIsTransitioning(false), 600);
   };
 
   // --- Arrow Icons ---
@@ -68,38 +81,56 @@ const FounderVoiceSection = () => {
   const styles = {
     container: {
       width: '100%',
-      padding: '100px 40px',
+      padding: isMobile ? '60px 20px' : '100px 40px',
       backgroundColor: '#f8f9fa',
       fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
       color: '#0a0f2c',
       boxSizing: 'border-box',
       position: 'relative',
     },
-    contentWrapper: {
-      maxWidth: '1100px',
-      margin: '0 auto',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-      gap: '60px',
-      position: 'relative',
-      transition: 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)', // Smooth transition for content changes
-    },
-    textContainer: {
-      flex: '1 1 500px',
-      maxWidth: '580px',
-      position: 'relative',
-      opacity: isTransitioning ? 0.7 : 1, // Smooth fade during transition
-      transform: isTransitioning ? 'translateX(10px)' : 'translateX(0)', // Subtle slide effect
-      transition: 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)', // Smooth transition
-    },
-    heading: {
+    mainHeading: {
       fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
       fontWeight: '600',
       lineHeight: 1.2,
-      marginBottom: '50px',
-      transition: 'all 0.6s ease',
+      marginBottom: '60px',
+      textAlign: 'center',
+      display: isMobile ? 'block' : 'none', // Only show on mobile
+    },
+    contentWrapper: {
+      maxWidth: '1100px',
+      margin: '0 auto',
+      display: isMobile ? 'block' : 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexWrap: 'wrap',
+      gap: isMobile ? '80px' : '60px',
+      position: 'relative',
+      transition: isMobile ? 'none' : 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)',
+    },
+    voiceItem: {
+      display: isMobile ? 'flex' : 'contents',
+      flexDirection: isMobile ? 'column' : 'row',
+      alignItems: isMobile ? 'center' : 'normal',
+      gap: isMobile ? '40px' : '0',
+      marginBottom: isMobile ? '80px' : '0',
+      textAlign: isMobile ? 'center' : 'left',
+    },
+    textContainer: {
+      flex: isMobile ? 'none' : '1 1 500px',
+      maxWidth: isMobile ? '100%' : '580px',
+      position: 'relative',
+      opacity: (isTransitioning && !isMobile) ? 0.7 : 1,
+      transform: (isTransitioning && !isMobile) ? 'translateX(10px)' : 'translateX(0)',
+      transition: isMobile ? 'none' : 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)',
+      order: isMobile ? 2 : 'initial',
+    },
+    heading: {
+      fontSize: 'clamp(2rem, 5vw, 2.8rem)',
+      fontWeight: '600',
+      lineHeight: 1.2,
+      marginBottom: '40px',
+      transition: isMobile ? 'none' : 'all 0.6s ease',
+      display: isMobile ? 'none' : 'block', // Hide individual headings on mobile
     },
     quoteWrapper: {
       position: 'relative',
@@ -107,7 +138,7 @@ const FounderVoiceSection = () => {
       paddingRight: '20px',
       paddingTop: '10px',
       paddingBottom: '10px',
-      transition: 'all 0.6s ease',
+      transition: isMobile ? 'none' : 'all 0.6s ease',
     },
     quoteText: {
       fontSize: 'clamp(1rem, 2.5vw, 1.1rem)',
@@ -116,25 +147,25 @@ const FounderVoiceSection = () => {
       position: 'relative',
       zIndex: 1,
       fontStyle: 'italic',
-      transition: 'all 0.6s ease',
+      transition: isMobile ? 'none' : 'all 0.6s ease',
     },
     authorContainer: {
         marginTop: '24px',
         paddingLeft: '20px',
-        transition: 'all 0.6s ease',
+        transition: isMobile ? 'none' : 'all 0.6s ease',
     },
     authorName: {
       fontWeight: '600',
       fontSize: '1.1rem',
       margin: '0 0 4px 0',
-      transition: 'all 0.6s ease',
+      transition: isMobile ? 'none' : 'all 0.6s ease',
     },
     authorTitle: {
         fontSize: '1rem',
         color: '#555e7a',
         margin: 0,
         fontWeight: '600',
-        transition: 'all 0.6s ease',
+        transition: isMobile ? 'none' : 'all 0.6s ease',
     },
     startQuote: {
         position: 'absolute',
@@ -145,7 +176,7 @@ const FounderVoiceSection = () => {
         zIndex: 0,
         opacity: 0.6,
         filter: 'brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(40%) contrast(100%)',
-        transition: 'all 0.6s ease',
+        transition: isMobile ? 'none' : 'all 0.6s ease',
     },
     startQuote2: {
         position: 'absolute',
@@ -156,7 +187,7 @@ const FounderVoiceSection = () => {
         zIndex: 0,
         opacity: 0.6,
         filter: 'brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(40%) contrast(100%)',
-        transition: 'all 0.6s ease',
+        transition: isMobile ? 'none' : 'all 0.6s ease',
     },
     endQuote: {
         position: 'absolute',
@@ -168,7 +199,7 @@ const FounderVoiceSection = () => {
         zIndex: 0,
         opacity: 0.6,
         filter: 'brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(40%) contrast(100%)',
-        transition: 'all 0.6s ease',
+        transition: isMobile ? 'none' : 'all 0.6s ease',
     },
     endQuote2: {
         position: 'absolute',
@@ -180,24 +211,25 @@ const FounderVoiceSection = () => {
         zIndex: 0,
         opacity: 0.6,
         filter: 'brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(40%) contrast(100%)',
-        transition: 'all 0.6s ease',
+        transition: isMobile ? 'none' : 'all 0.6s ease',
     },
     imageContainer: {
-      flex: '0 1 350px',
+      flex: isMobile ? 'none' : '0 1 350px',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      opacity: isTransitioning ? 0.7 : 1, // Smooth fade during transition
-      transform: isTransitioning ? 'scale(0.98)' : 'scale(1)', // Subtle scale effect
-      transition: 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)', // Smooth transition
+      opacity: (isTransitioning && !isMobile) ? 0.7 : 1,
+      transform: (isTransitioning && !isMobile) ? 'scale(0.98)' : 'scale(1)',
+      transition: isMobile ? 'none' : 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)',
+      order: isMobile ? 1 : 'initial',
     },
     image: {
-      width: 'clamp(280px, 100%, 350px)',
-      height: 'clamp(280px, 100%, 350px)',
+      width: isMobile ? 'clamp(250px, 80vw, 300px)' : 'clamp(280px, 100%, 350px)',
+      height: isMobile ? 'clamp(250px, 80vw, 300px)' : 'clamp(280px, 100%, 350px)',
       borderRadius: '50%',
       objectFit: 'cover',
       boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-      transition: 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)', // Smooth image transition
+      transition: isMobile ? 'none' : 'all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1)',
     },
     arrowButton: {
       position: 'absolute',
@@ -208,7 +240,7 @@ const FounderVoiceSection = () => {
       borderRadius: '50%',
       width: '50px',
       height: '50px',
-      display: 'flex',
+      display: isMobile ? 'none' : 'flex', // Hide on mobile
       alignItems: 'center',
       justifyContent: 'center',
       cursor: 'pointer',
@@ -219,15 +251,15 @@ const FounderVoiceSection = () => {
     },
     leftArrow: {
       left: '-50px',
-      opacity: currentSlide > 0 ? 1 : 0, // Smooth fade in/out
-      visibility: currentSlide > 0 ? 'visible' : 'hidden', // Prevent interaction when hidden
-      transform: currentSlide > 0 ? 'translateY(-50%) translateX(0) scale(1)' : 'translateY(-50%) translateX(-20px) scale(0.8)', // Slide in from left with scale
+      opacity: currentSlide > 0 ? 1 : 0,
+      visibility: currentSlide > 0 ? 'visible' : 'hidden',
+      transform: currentSlide > 0 ? 'translateY(-50%) translateX(0) scale(1)' : 'translateY(-50%) translateX(-20px) scale(0.8)',
     },
     rightArrow: {
       right: '-50px',
-      opacity: currentSlide < voices.length - 1 ? 1 : 0, // Smooth fade in/out
-      visibility: currentSlide < voices.length - 1 ? 'visible' : 'hidden', // Prevent interaction when hidden
-      transform: currentSlide < voices.length - 1 ? 'translateY(-50%) translateX(0) scale(1)' : 'translateY(-50%) translateX(20px) scale(0.8)', // Slide in from right with scale
+      opacity: currentSlide < voices.length - 1 ? 1 : 0,
+      visibility: currentSlide < voices.length - 1 ? 'visible' : 'hidden',
+      transform: currentSlide < voices.length - 1 ? 'translateY(-50%) translateX(0) scale(1)' : 'translateY(-50%) translateX(20px) scale(0.8)',
     },
     arrowHover: {
       backgroundColor: '#0a0f2c',
@@ -248,11 +280,11 @@ const FounderVoiceSection = () => {
       boxShadow: '0 8px 25px rgba(10, 15, 44, 0.4)',
     },
     slideIndicators: {
-      display: 'flex',
+      display: isMobile ? 'none' : 'flex', // Hide on mobile
       justifyContent: 'center',
       gap: '8px',
       marginTop: '30px',
-      transition: 'all 0.3s ease', // Smooth indicator transition
+      transition: 'all 0.3s ease',
     },
     indicator: {
       width: '12px',
@@ -261,7 +293,7 @@ const FounderVoiceSection = () => {
       backgroundColor: '#d1d5db',
       cursor: 'pointer',
       transition: 'all 0.3s ease',
-      opacity: isTransitioning ? 0.6 : 1, // Fade during transition
+      opacity: isTransitioning ? 0.6 : 1,
     },
     activeIndicator: {
       backgroundColor: '#0a0f2c',
@@ -275,7 +307,40 @@ const FounderVoiceSection = () => {
 
   const currentVoice = voices[currentSlide];
 
-  // --- Rendered Component ---
+  // --- Render mobile version ---
+  if (isMobile) {
+    return (
+      <div style={styles.container}>
+        <h2 style={styles.mainHeading}>Voices That Drive Vision</h2>
+        <div style={styles.contentWrapper}>
+          {voices.map((voice, index) => (
+            <div key={index} style={styles.voiceItem}>
+              <div style={styles.imageContainer}>
+                <img src={voice.image} alt={voice.authorName} style={styles.image} />
+              </div>
+              <div style={styles.textContainer}>
+                <div style={styles.quoteWrapper}>
+                  <img src={require('../images/comma.png')} alt="Opening quote" style={styles.startQuote} />
+                  <img src={require('../images/comma.png')} alt="Opening quote 2" style={styles.startQuote2} />
+                  <p style={styles.quoteText}>
+                    {voice.quote}
+                  </p>
+                  <img src={require('../images/comma.png')} alt="Closing quote" style={styles.endQuote} />
+                  <img src={require('../images/comma.png')} alt="Closing quote 2" style={styles.endQuote2} />
+                </div>
+                <div style={styles.authorContainer}>
+                  <p style={styles.authorName}>{voice.authorName}</p>
+                  <p style={styles.authorTitle}>{voice.authorTitle}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // --- Render desktop version ---
   return (
     <div style={styles.container}>
       <div style={styles.contentWrapper}>
