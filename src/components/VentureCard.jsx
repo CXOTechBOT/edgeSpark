@@ -33,7 +33,7 @@ const VentureCard = ({ logo, name, description }) => (
         <p className="card-description">{description}</p>
       </div>
     </div>
-    <a href="#" className="card-arrow-link">
+    <a href="#" role="button" className="card-arrow-link">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

@@ -8,22 +8,22 @@ const HeroSection = () => {
 
   // --- SVG Icons (as functional components for cleanliness) ---
 
-  const EcosystemIcon = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'translateY(1px)' }}>
-      <path d="M17.6569 17.6569C16.2929 19.0209 14.2071 19.8284 12 19.8284C9.79289 19.8284 7.70711 19.0209 6.34315 17.6569C4.97918 16.2929 4.17157 14.2071 4.17157 12C4.17157 9.79289 4.97918 7.70711 6.34315 6.34315C7.70711 4.97918 9.79289 4.17157 12 4.17157C14.2071 4.17157 16.2929 4.97918 17.6569 6.34315" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M12 2V4" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M12 20V22" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M4 12L2 12" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M22 12L20 12" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
-      <circle cx="12" cy="12" r="2" stroke="url(#ecosystem-gradient)" strokeWidth="2"/>
-      <defs>
-        <linearGradient id="ecosystem-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style={{stopColor: '#4F46E5'}} />
-          <stop offset="100%" style={{stopColor: '#0EA5E9'}} />
-        </linearGradient>
-      </defs>
-    </svg>
-  );
+  // const EcosystemIcon = () => (
+  //   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'translateY(1px)' }}>
+  //     <path d="M17.6569 17.6569C16.2929 19.0209 14.2071 19.8284 12 19.8284C9.79289 19.8284 7.70711 19.0209 6.34315 17.6569C4.97918 16.2929 4.17157 14.2071 4.17157 12C4.17157 9.79289 4.97918 7.70711 6.34315 6.34315C7.70711 4.97918 9.79289 4.17157 12 4.17157C14.2071 4.17157 16.2929 4.97918 17.6569 6.34315" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
+  //     <path d="M12 2V4" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
+  //     <path d="M12 20V22" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
+  //     <path d="M4 12L2 12" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
+  //     <path d="M22 12L20 12" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
+  //     <circle cx="12" cy="12" r="2" stroke="url(#ecosystem-gradient)" strokeWidth="2"/>
+  //     <defs>
+  //       <linearGradient id="ecosystem-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+  //         <stop offset="0%" style={{stopColor: '#4F46E5'}} />
+  //         <stop offset="100%" style={{stopColor: '#0EA5E9'}} />
+  //       </linearGradient>
+  //     </defs>
+  //   </svg>
+  // );
 
   const ArrowIcon = () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'translateY(-1px)' }}>

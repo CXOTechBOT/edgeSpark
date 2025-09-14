@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';

@@ -71,11 +71,11 @@ const FounderVoiceSection = () => {
   );
 
   // --- SVG for the new, subtle Quotation Marks ---
-  const QuoteIcon = ({ style }) => (
-    <svg width="50" height="40" viewBox="0 0 50 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style={style}>
-        <path d="M15.625 0V18.75H7.8125L0 37.5H9.375L18.75 18.75V0H15.625ZM46.875 0V18.75H39.0625L31.25 37.5H40.625L50 18.75V0H46.875Z"/>
-    </svg>
-  );
+  // const QuoteIcon = ({ style }) => (
+  //   <svg width="50" height="40" viewBox="0 0 50 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style={style}>
+  //       <path d="M15.625 0V18.75H7.8125L0 37.5H9.375L18.75 18.75V0H15.625ZM46.875 0V18.75H39.0625L31.25 37.5H40.625L50 18.75V0H46.875Z"/>
+  //   </svg>
+  // );
 
   // --- Inline CSS Styles ---
   const styles = {
