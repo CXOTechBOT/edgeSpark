@@ -8,23 +8,6 @@ const HeroSection = () => {
 
   // --- SVG Icons (as functional components for cleanliness) ---
 
-  // const EcosystemIcon = () => (
-  //   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'translateY(1px)' }}>
-  //     <path d="M17.6569 17.6569C16.2929 19.0209 14.2071 19.8284 12 19.8284C9.79289 19.8284 7.70711 19.0209 6.34315 17.6569C4.97918 16.2929 4.17157 14.2071 4.17157 12C4.17157 9.79289 4.97918 7.70711 6.34315 6.34315C7.70711 4.97918 9.79289 4.17157 12 4.17157C14.2071 4.17157 16.2929 4.97918 17.6569 6.34315" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
-  //     <path d="M12 2V4" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
-  //     <path d="M12 20V22" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
-  //     <path d="M4 12L2 12" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
-  //     <path d="M22 12L20 12" stroke="url(#ecosystem-gradient)" strokeWidth="2" strokeLinecap="round"/>
-  //     <circle cx="12" cy="12" r="2" stroke="url(#ecosystem-gradient)" strokeWidth="2"/>
-  //     <defs>
-  //       <linearGradient id="ecosystem-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-  //         <stop offset="0%" style={{stopColor: '#4F46E5'}} />
-  //         <stop offset="100%" style={{stopColor: '#0EA5E9'}} />
-  //       </linearGradient>
-  //     </defs>
-  //   </svg>
-  // );
-
   const ArrowIcon = () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'translateY(-1px)' }}>
       <path d="M7 17L17 7"></path>
@@ -43,6 +26,18 @@ const HeroSection = () => {
 
   // --- Video loading state ---
   const [videoLoaded, setVideoLoaded] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  // --- Check screen size ---
+  React.useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768); // Mobile and tablet
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   // --- Inline CSS Styles ---
   const styles = {
@@ -69,8 +64,8 @@ const HeroSection = () => {
       width: '100%',
       height: '100%',
       objectFit: 'cover',
-      zIndex: 1, // Changed from -2 to 1 to make it visible
-      opacity: videoLoaded ? 1 : 0, // Changed from 0.8 to 1 for full visibility
+      zIndex: 1,
+      opacity: videoLoaded ? 1 : 0,
       transition: 'opacity 1s ease-in-out',
     },
     overlay: {
@@ -79,23 +74,24 @@ const HeroSection = () => {
       left: 0,
       width: '100%',
       height: '100%',
-      background: 'rgba(0, 0, 0, 0.4)', // Simplified overlay for better video visibility
-      zIndex: 2, // Above video but below content
+      background: 'rgba(0, 0, 0, 0.4)',
+      zIndex: 2,
     },
     header: {
       position: 'absolute',
-      top: '40px',
-      left: '50px',
-      textAlign: 'left',
-      zIndex: 20, // Increased z-index to ensure it's above video and overlay
+      top: isMobile ? '20px' : '40px', // Closer to top on mobile (reduced from 30px to 20px)
+      left: isMobile ? '50%' : '50px', // Center on mobile, left on desktop
+      transform: isMobile ? 'translateX(-50%)' : 'none', // Center transform on mobile
+      textAlign: isMobile ? 'center' : 'left', // Center text on mobile
+      zIndex: 20,
     },
     logoMain: {
-      fontSize: '22px',
+      fontSize: isMobile ? '20px' : '22px', // Slightly smaller on mobile
       fontWeight: '600',
       margin: 0,
     },
     logoSub: {
-      fontSize: '12px',
+      fontSize: isMobile ? '11px' : '12px', // Slightly smaller on mobile
       fontWeight: '300',
       opacity: 0.8,
       margin: 0,
@@ -107,7 +103,8 @@ const HeroSection = () => {
       flexDirection: 'column',
       alignItems: 'center',
       maxWidth: '1000px',
-      zIndex: 20, // Increased z-index to ensure it's above video and overlay
+      zIndex: 20,
+      marginTop: isMobile ? '20px' : '0', // Reduced from 60px to 20px to close the gap
     },
     heading: {
       fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
@@ -120,28 +117,30 @@ const HeroSection = () => {
       marginBottom: '40px',
     },
     tags: {
-      fontSize: '18px',
+      fontSize: isMobile ? '16px' : '18px', // Slightly smaller on mobile
       fontWeight: '400',
       opacity: 0.9,
       marginBottom: '10px',
       letterSpacing: '0.5px',
     },
     tagline: {
-      fontSize: '16px',
+      fontSize: isMobile ? '14px' : '16px', // Slightly smaller on mobile
       fontWeight: '300',
       opacity: 0.7,
     },
     buttonContainer: {
       display: 'flex',
-      flexWrap: 'wrap',
+      flexDirection: isMobile ? 'column' : 'row', // Stack buttons vertically on mobile
       justifyContent: 'center',
-      gap: '20px',
+      gap: isMobile ? '15px' : '20px', // Smaller gap on mobile
+      width: isMobile ? '100%' : 'auto', // Full width on mobile
+      maxWidth: isMobile ? '300px' : 'none', // Max width on mobile
     },
     buttonBase: {
-      padding: '14px 28px',
+      padding: isMobile ? '12px 24px' : '14px 28px', // Smaller padding on mobile
       borderRadius: '8px',
       cursor: 'pointer',
-      fontSize: '16px',
+      fontSize: isMobile ? '15px' : '16px', // Smaller font on mobile
       fontWeight: '500',
       display: 'inline-flex',
       alignItems: 'center',
@@ -150,6 +149,7 @@ const HeroSection = () => {
       textDecoration: 'none',
       border: '1.5px solid transparent',
       transition: 'transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease',
+      width: isMobile ? '100%' : 'auto', // Full width buttons on mobile
     },
     primaryButton: {
       backgroundColor: '#ffffff',
@@ -171,7 +171,7 @@ const HeroSection = () => {
       opacity: 0.7,
       cursor: 'pointer',
       transition: 'opacity 0.3s ease, transform 0.2s ease',
-      zIndex: 20, // Increased z-index to ensure it's above video and overlay
+      zIndex: 20,
     },
     scrollText: {
       fontSize: '12px',
