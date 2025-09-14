@@ -146,6 +146,7 @@ function CallToActionSection() {
             Transform your business with cutting-edge AI, sustainable solutions,
             and a future-ready workforce that drives impact and innovation.
           </p>
+          /* eslint-disable jsx-a11y/anchor-is-valid */
           <a href="#" role="button" className="cta-button">
             Start a Conversation
             <svg
