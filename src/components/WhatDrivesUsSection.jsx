@@ -185,7 +185,7 @@ function WhatDrivesUsSection() {
           }
         `}
       </style>
-      <div className="what-drives-us-container">
+      <div className="what-drives-us-container" id="about-section">
         <div className="section-header">
           <h2 className="section-title">What Drives Us</h2>
           <p className="section-description">

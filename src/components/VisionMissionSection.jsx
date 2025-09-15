@@ -107,7 +107,7 @@ const VisionMissionSection = () => {
 
   // --- Rendered Component ---
   return (
-    <div style={styles.container}>
+    <div style={styles.container} id="vision-mission-section">
       <h2 style={styles.heading}>
         Driven by Purpose. <br /> Fueled by Innovation..
       </h2>

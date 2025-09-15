@@ -248,7 +248,7 @@ function ForQueriesSection() {
         `}
       </style>
 
-      <div className="for-queries-container">
+      <div className="for-queries-container" id="contact-section">
         <div className="queries-header">
           <h2>For Queries</h2>
           <p>Contact us if you have any queries.</p>

@@ -98,7 +98,7 @@ const OfferingsSection = () => {
 
   // --- Rendered Component ---
   return (
-    <div style={styles.container}>
+    <div style={styles.container} id="offerings-section">
       <div style={styles.contentWrapper}>
         <h2 style={styles.heading}>What we Offer : Tailored for Business Growth</h2>
         <div style={styles.cardGrid}>
