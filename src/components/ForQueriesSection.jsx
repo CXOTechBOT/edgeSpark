@@ -29,6 +29,21 @@ function ForQueriesSection() {
     setIsSubmitting(true);
     setSubmitMessage('');
 
+    // Debug: Check if environment variables are loaded
+    console.log('Environment variables check:');
+    console.log('Service ID:', process.env.REACT_APP_EMAILJS_SERVICE_ID);
+    console.log('Template ID:', process.env.REACT_APP_EMAILJS_TEMPLATE_ID);
+    console.log('User ID:', process.env.REACT_APP_EMAILJS_USER_ID);
+
+    // Validate environment variables
+    if (!process.env.REACT_APP_EMAILJS_SERVICE_ID || 
+        !process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 
+        !process.env.REACT_APP_EMAILJS_USER_ID) {
+      setSubmitMessage('Configuration error: EmailJS credentials not found. Please check environment variables.');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       // Using EmailJS with your credentials
       const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
@@ -37,9 +52,9 @@ function ForQueriesSection() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          service_id: 'service_5543es4', // Your EmailJS service ID
-          template_id: 'template_9q31pbs', // Your EmailJS template ID
-          user_id: 'CM_nb8U7I8dEOty2d', // Your EmailJS user ID
+          service_id: process.env.REACT_APP_EMAILJS_SERVICE_ID, // Your EmailJS service ID
+          template_id: process.env.REACT_APP_EMAILJS_TEMPLATE_ID, // Your EmailJS template ID
+          user_id: process.env.REACT_APP_EMAILJS_USER_ID, // Your EmailJS user ID
           template_params: {
             to_email: 'yogeshjat8965@gmail.com',
             from_name: formData.fullName,
@@ -66,11 +81,18 @@ function ForQueriesSection() {
           message: ''
         });
       } else {
-        throw new Error('Failed to send email');
+        // Get more detailed error information
+        const errorText = await response.text();
+        console.error('EmailJS API Error:', response.status, errorText);
+        throw new Error(`Failed to send email: ${response.status} - ${errorText}`);
       }
     } catch (error) {
       console.error('Error sending email:', error);
-      setSubmitMessage('Sorry, there was an error sending your message. Please try again or contact us directly.');
+      if (error.message.includes('Failed to send email')) {
+        setSubmitMessage(`Error: ${error.message}. Please try again or contact us directly.`);
+      } else {
+        setSubmitMessage('Sorry, there was a network error. Please check your internet connection and try again.');
+      }
     } finally {
       setIsSubmitting(false);
     }

@@ -150,7 +150,7 @@ function InnovationEcosystem() {
 
           .card-logo img {
             width: 130px; /* Increased width for logos */
-            height: 100px; /* Maintain aspect ratio */
+            height: 150px; /* Maintain aspect ratio */
             max-height: 100px; /* Increased max height for logos */
             display: block; /* Remove extra space below image */
             object-fit: contain; /* Maintain aspect ratio */
