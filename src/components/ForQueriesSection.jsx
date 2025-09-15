@@ -1,6 +1,100 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function ForQueriesSection() {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    emailAddress: '',
+    phoneNumber: '',
+    companyName: '',
+    industry: '',
+    interestedIn: '',
+    message: ''
+  });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      // Using EmailJS with your credentials
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'service_5543es4', // Your EmailJS service ID
+          template_id: 'template_9q31pbs', // Your EmailJS template ID
+          user_id: 'CM_nb8U7I8dEOty2d', // Your EmailJS user ID
+          template_params: {
+            to_email: 'yogeshjat8965@gmail.com',
+            from_name: formData.fullName,
+            from_email: formData.emailAddress,
+            phone: formData.phoneNumber,
+            company: formData.companyName,
+            industry: formData.industry,
+            interested_in: formData.interestedIn,
+            message: formData.message,
+            reply_to: formData.emailAddress
+          }
+        })
+      });
+
+      if (response.ok) {
+        setSubmitMessage('Thank you! Your message has been sent successfully. We will get back to you soon.');
+        setFormData({
+          fullName: '',
+          emailAddress: '',
+          phoneNumber: '',
+          companyName: '',
+          industry: '',
+          interestedIn: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setSubmitMessage('Sorry, there was an error sending your message. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Alternative: Simple mailto approach (fallback)
+  const handleMailtoSubmit = (e) => {
+    e.preventDefault();
+    
+    const subject = `Contact Form Submission from ${formData.fullName}`;
+    const body = `
+Full Name: ${formData.fullName}
+Email: ${formData.emailAddress}
+Phone: ${formData.phoneNumber}
+Company: ${formData.companyName}
+Industry: ${formData.industry}
+Interested In: ${formData.interestedIn}
+Message: ${formData.message}
+    `;
+    
+    const mailtoLink = `mailto:yogeshjat8965@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+  };
+
   return (
     <>
       <style>
@@ -121,6 +215,13 @@ function ForQueriesSection() {
             font-weight: 500; /* Medium weight for labels */
           }
 
+          /* Required asterisk styling */
+          .form-group label .required {
+            color: #e53e3e; /* Red color for asterisk */
+            margin-left: 4px;
+            font-weight: bold;
+          }
+
           .form-group input,
           .form-group select,
           .form-group textarea {
@@ -136,6 +237,13 @@ function ForQueriesSection() {
             -webkit-appearance: none; /* Remove default styling for select */
             -moz-appearance: none; /* Remove default styling for select */
             appearance: none; /* Remove default styling for select */
+          }
+
+          /* Invalid/required field styling */
+          .form-group input:invalid,
+          .form-group select:invalid,
+          .form-group textarea:invalid {
+            border-color: #fed7d7; /* Light red border for invalid fields */
           }
           
           .form-group input:focus,
@@ -182,11 +290,38 @@ function ForQueriesSection() {
             box-shadow: 0 6px 12px rgba(46, 48, 146, 0.4);
           }
 
+          .submit-button:disabled {
+            background-color: #9ca3af; /* Grey background when disabled */
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+          }
+
           .submit-button-icon {
             width: 20px;
             height: 20px;
             stroke-width: 2;
             color: #ffffff;
+          }
+
+          .submit-message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+          }
+
+          .submit-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+          }
+
+          .submit-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
           }
 
           /* Media Queries for Responsiveness */
@@ -277,7 +412,7 @@ function ForQueriesSection() {
               </div>
               <div className="contact-details">
                 <p>Email Us</p>
-                <p className="highlight">contactus@.com</p>
+                <p className="highlight">contactus@edgespark.com</p>
               </div>
             </div>
           </div>
@@ -285,48 +420,132 @@ function ForQueriesSection() {
           {/* Right Column: Get a Call Back Form */}
           <div className="get-call-back-form-card">
             <h3>Get a Call Back</h3>
-            <form className="form-grid">
+            <form className="form-grid" onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" placeholder="" />
+                <label htmlFor="fullName">
+                  Full Name<span className="required">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="fullName" 
+                  name="fullName" 
+                  placeholder="Enter your full name" 
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  required 
+                />
               </div>
               <div className="form-group">
-                <label htmlFor="emailAddress">Email Address</label>
-                <input type="email" id="emailAddress" name="emailAddress" placeholder="" />
+                <label htmlFor="emailAddress">
+                  Email Address<span className="required">*</span>
+                </label>
+                <input 
+                  type="email" 
+                  id="emailAddress" 
+                  name="emailAddress" 
+                  placeholder="Enter your email address" 
+                  value={formData.emailAddress}
+                  onChange={handleInputChange}
+                  required 
+                />
               </div>
               <div className="form-group">
-                <label htmlFor="phoneNumber">Phone Number</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="" />
+                <label htmlFor="phoneNumber">
+                  Phone Number<span className="required">*</span>
+                </label>
+                <input 
+                  type="tel" 
+                  id="phoneNumber" 
+                  name="phoneNumber" 
+                  placeholder="Enter your phone number" 
+                  value={formData.phoneNumber}
+                  onChange={handleInputChange}
+                  required 
+                />
               </div>
               <div className="form-group">
-                <label htmlFor="companyName">Company Name</label>
-                <input type="text" id="companyName" name="companyName" placeholder="" />
+                <label htmlFor="companyName">
+                  Company Name<span className="required">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="companyName" 
+                  name="companyName" 
+                  placeholder="Enter your company name" 
+                  value={formData.companyName}
+                  onChange={handleInputChange}
+                  required 
+                />
               </div>
               <div className="form-group">
-                <label htmlFor="industry">Industry</label>
-                <select id="industry" name="industry">
+                <label htmlFor="industry">
+                  Industry<span className="required">*</span>
+                </label>
+                <select 
+                  id="industry" 
+                  name="industry" 
+                  value={formData.industry}
+                  onChange={handleInputChange}
+                  required
+                >
                   <option value="">Select Industry</option>
-                  <option value="tech">Technology</option>
-                  <option value="finance">Finance</option>
-                  <option value="health">Health</option>
+                  <option value="technology">Technology</option>
+                  <option value="finance">Finance & Banking</option>
+                  <option value="healthcare">Healthcare</option>
+                  <option value="retail">Retail & E-commerce</option>
+                  <option value="manufacturing">Manufacturing</option>
+                  <option value="education">Education</option>
+                  <option value="real-estate">Real Estate</option>
+                  <option value="logistics">Logistics & Transportation</option>
+                  <option value="energy">Energy & Utilities</option>
+                  <option value="media">Media & Entertainment</option>
+                  <option value="government">Government & Public Sector</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="interestedIn">Interested In</label>
-                <select id="interestedIn" name="interestedIn">
-                  <option value="">Select Option</option>
-                  <option value="service1">Service 1</option>
-                  <option value="service2">Service 2</option>
-                  <option value="service3">Service 3</option>
+                <label htmlFor="interestedIn">
+                  Interested In<span className="required">*</span>
+                </label>
+                <select 
+                  id="interestedIn" 
+                  name="interestedIn" 
+                  value={formData.interestedIn}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="">Select Service</option>
+                  <option value="ai-lifebot">AI LifeBOT - Conversational AI Solutions</option>
+                  <option value="appsolutely">Appsolutely - AI Consulting & Development</option>
+                  <option value="cxo-techbot">CXO TechBOT - Tech Media & Insights</option>
+                  <option value="skillz4">SKILLZ4 - AI-Powered Learning Platform</option>
+                  <option value="digital-transformation">Digital Transformation Consulting</option>
+                  <option value="custom-ai-solutions">Custom AI Solutions</option>
+                  <option value="automation-services">Business Process Automation</option>
+                  <option value="other">Other Services</option>
                 </select>
               </div>
               <div className="form-group full-width">
-                <label htmlFor="message">Message</label>
-                <textarea id="message" name="message" rows="4" placeholder=""></textarea>
+                <label htmlFor="message">
+                  Message<span className="required">*</span>
+                </label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  rows="4" 
+                  placeholder="Tell us about your project requirements or any specific questions you have..."
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                ></textarea>
               </div>
 
-              <button type="submit" className="submit-button">
-                Submit
+              <button 
+                type="submit" 
+                className="submit-button"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Submit'}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -338,6 +557,13 @@ function ForQueriesSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
               </button>
+
+              {/* Success/Error Message */}
+              {submitMessage && (
+                <div className={`submit-message ${submitMessage.includes('Thank you') ? 'success' : 'error'}`}>
+                  {submitMessage}
+                </div>
+              )}
             </form>
           </div>
         </div>

@@ -18,6 +18,29 @@ const CallToActionSection = () => {
     setVideoLoaded(false);
   };
 
+  // --- Scroll Functions ---
+  const handleGetStarted = () => {
+    const contactSection = document.getElementById('contact-section');
+    if (contactSection) {
+      const offsetTop = contactSection.offsetTop - 80; // 80px offset from top for better positioning
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleScheduleCall = () => {
+    const contactSection = document.getElementById('contact-section');
+    if (contactSection) {
+      const offsetTop = contactSection.offsetTop - 80; // 80px offset from top for better positioning
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   // --- Inline CSS Styles ---
   const styles = {
     container: {
@@ -163,7 +186,7 @@ const CallToActionSection = () => {
             style={primaryButtonStyle}
             onMouseEnter={() => setPrimaryHover(true)}
             onMouseLeave={() => setPrimaryHover(false)}
-            onClick={() => console.log('Get Started clicked')}
+            onClick={handleGetStarted}
           >
             Get Started Today
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -175,7 +198,7 @@ const CallToActionSection = () => {
             style={secondaryButtonStyle}
             onMouseEnter={() => setSecondaryHover(true)}
             onMouseLeave={() => setSecondaryHover(false)}
-            onClick={() => console.log('Schedule Call clicked')}
+            onClick={handleScheduleCall}
           >
             Schedule a Call
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
