@@ -8,7 +8,7 @@ const OfferingsSection = () => {
 
   // --- Data for the 9 offering cards ---
   const offerings = [
-    { title: 'AI & Business Automation', imgSrc: require('../images/what we offer images/Group 24322.png') },
+    { title: 'AI & Business Automation', imgSrc: require('../images/what we offer images/Group 24323 (Copy).png') },
     { title: 'Custom GenAI & Enterprise Copilots', imgSrc: require('../images/what we offer images/Group 24323.png') },
     { title: 'Sustainable AI & Green Tech', imgSrc: require('../images/what we offer images/Group 24324.png') },
     { title: 'Future-Ready Skilling & EdTech Solutions', imgSrc: require('../images/what we offer images/Group 24327.png') },

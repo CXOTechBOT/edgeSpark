@@ -2,7 +2,7 @@ import React from 'react';
 
 const ventures = [
   {
-    logo: require('../images/Edgespark/Image 1@2x.png'),
+    logo: require('../images/Edgespark/Ailifebot.png'),
     name: 'AI LifeBOT',
     description: 'GenAI-powered automation suite that revolutionizes customer service through Conversational AI, intelligent agents, and workflow automation.',
   },
@@ -62,7 +62,7 @@ function InnovationEcosystem() {
             font-family: 'Inter', sans-serif; /* A common modern sans-serif font */
             margin: 0;
             padding: 0;
-            background-color: #ffffffff; /* Light background as per screenshot */
+            background-color: #f7f8fa; /* Changed to card color */
             overflow-x: hidden; /* Prevent horizontal scroll */
           }
 
@@ -120,7 +120,7 @@ function InnovationEcosystem() {
             display: flex;
             flex-direction: column;
             padding: 24px; /* Padding inside the card */
-            background-color: #f7f8fa;
+            background-color: #ffffff; /* Changed to white (section background color) */
             border-radius: 12px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -225,7 +225,7 @@ function InnovationEcosystem() {
             .card-logo {
               width: 100%; /* Full width for mobile */
               padding: 40px 20px; /* More padding for larger image area */
-              background-color: #f7f8fa; /* Keep the same background */
+              background-color: #ffffff; /* Changed to white (section background color) */
               border-radius: 12px 12px 0 0; /* Round top corners only */
               justify-content: center;
               display: flex;
@@ -243,7 +243,7 @@ function InnovationEcosystem() {
 
             .card-text-content {
               padding: 20px; /* Add padding for text content */
-              background-color: white; /* White background for text */
+              background-color: #f7f8fa; /* Changed to card background color */
               border-radius: 0 0 12px 12px; /* Round bottom corners only */
               align-items: flex-start; /* Align text to start */
               width: 100%; /* Full width */
@@ -271,7 +271,7 @@ function InnovationEcosystem() {
         `}
       </style>
 
-      <div className="app-container">
+      <div className="app-container" id="innovation-ecosystem">
         <div className="header-section">
           <h1 className="main-heading">Explore Our Innovation Ecosystem</h1>
           <p className="sub-heading">

@@ -84,8 +84,8 @@ const AboutSection = () => {
             <b> Sustainable Solutions</b> that drive real-world impact.
           </p>
           <p style={styles.paragraph}>
-            From automation to upskilling, we help
-            enterprises evolve faster, smarter, and stronger.
+            <b> From automation to upskilling, we help
+            enterprises evolve faster, smarter, and stronger.</b>
           </p>
         </div>
         <div style={styles.imageContainer}>

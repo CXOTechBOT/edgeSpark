@@ -143,9 +143,7 @@ const TestimonialsSection = () => {
     <div style={styles.container}>
       <h2 style={styles.heading}>
         Customer Speaks..
-        <br />Real Stories.
-        <br />
-        Real Impact.
+        <br />Real Stories. Real Impact.
       </h2>
       <div style={styles.sliderContainer}>
         <ArrowButton direction="left" onClick={() => handleNavigation('prev')} />

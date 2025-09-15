@@ -1,33 +1,41 @@
 import React from 'react';
 
+// Import SVGs directly at the top
+import innovationIcon from '../images/1.svg';
+import excellenceIcon from '../images/2.svg';
+import clientCentricIcon from '../images/3.svg';
+import collaborativeIcon from '../images/4.svg';
+import sustainabilityIcon from '../images/5.svg';
+import empowermentIcon from '../images/6.svg';
+
 const values = [
   {
-    icon: <img src={require('../images/innovation.png')} alt="Innovation" style={{width: 48, height: 48}} />,
+    icon: <img src={innovationIcon} alt="Innovation" style={{width: 48, height: 48}} />,
     title: 'Innovation',
     description: 'We pioneer bold ideas and next-gen technologies that disrupt the ordinary and shape what\'s next.',
   },
   {
-    icon: <img src={require('../images/excellence.png')} alt="Excellence" style={{width: 48, height: 48}} />,
+    icon: <img src={excellenceIcon} alt="Excellence" style={{width: 48, height: 48}} />,
     title: 'Excellence',
     description: 'We uphold uncompromising standards, delivering solutions with precision, integrity, and measurable impact.',
   },
   {
-    icon: <img src={require('../images/approach.png')} alt="Client-Centric Approach" style={{width: 48, height: 48}} />,
+    icon: <img src={clientCentricIcon} alt="Client-Centric Approach" style={{width: 48, height: 48}} />,
     title: 'Client-Centric Approach',
     description: 'We design with purpose putting client challenges at the center of every solution we create.',
   },
   {
-    icon: <img src={require('../images/leadership.png')} alt="Collaborative Leadership" style={{width: 48, height: 48}} />,
+    icon: <img src={collaborativeIcon} alt="Collaborative Leadership" style={{width: 48, height: 48}} />,
     title: 'Collaborative Leadership',
     description: 'We believe in the power of collective intelligence driving transformation through shared vision and unified action.',
   },
   {
-    icon: <img src={require('../images/sustainability.png')} alt="Sustainability" style={{width: 48, height: 48}} />,
+    icon: <img src={sustainabilityIcon} alt="Sustainability" style={{width: 48, height: 48}} />,
     title: 'Sustainability',
     description: 'We build with foresight, ensuring our solutions fuel progress while preserving the planet for future generations.',
   },
   {
-    icon: <img src={require('../images/empowerment.png')} alt="Empowerment" style={{width: 48, height: 48}} />,
+    icon: <img src={empowermentIcon} alt="Empowerment" style={{width: 48, height: 48}} />,
     title: 'Empowerment',
     description: 'We unlock potential at every level elevating individuals, enabling teams, and uplifting communities through inclusive innovation.',
   },
@@ -140,9 +148,20 @@ function WhatDrivesUsSection() {
             transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
           }
 
+          .card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+          }
+
           .value-card:hover .card-icon {
             transform: scale(1.15) rotate(-8deg);
             filter: drop-shadow(0 4px 12px rgba(59,130,246,0.25));
+          }
+
+          .value-card:hover .card-icon img {
+            filter: drop-shadow(0 4px 12px rgba(59,130,246,0.25)) brightness(1.1);
           }
 
           @keyframes iconEntrance {

@@ -39,6 +39,46 @@ const HeroSection = () => {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
+  // --- Scroll Functions ---
+  const handleDiscoverEcosystem = () => {
+    const ecosystemSection = document.getElementById('innovation-ecosystem');
+    if (ecosystemSection) {
+      const offsetTop = ecosystemSection.offsetTop - 80; // 80px offset from top for better positioning
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleMeetOurVentures = () => {
+    const founderSection = document.getElementById('founder-voice-section');
+    if (founderSection) {
+      const offsetTop = founderSection.offsetTop - 80; // 80px offset from top for better positioning
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const handleScrollDown = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleVideoLoad = () => {
+    console.log('Blue smoke video loaded successfully');
+    setVideoLoaded(true);
+  };
+
+  const handleVideoError = (e) => {
+    console.error('Video failed to load:', e.target.error);
+    setVideoLoaded(false);
+  };
+
   // --- Inline CSS Styles ---
   const styles = {
     container: {
@@ -183,23 +223,6 @@ const HeroSection = () => {
   const [secondaryHover, setSecondaryHover] = React.useState(false);
   const [scrollHover, setScrollHover] = React.useState(false);
 
-  const handleScrollDown = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: 'smooth'
-    });
-  };
-
-  const handleVideoLoad = () => {
-    console.log('Blue smoke video loaded successfully');
-    setVideoLoaded(true);
-  };
-
-  const handleVideoError = (e) => {
-    console.error('Video failed to load:', e.target.error);
-    setVideoLoaded(false);
-  };
-
   const primaryButtonStyle = {
     ...styles.buttonBase,
     ...styles.primaryButton,
@@ -268,6 +291,7 @@ const HeroSection = () => {
             style={primaryButtonStyle}
             onMouseEnter={() => setPrimaryHover(true)}
             onMouseLeave={() => setPrimaryHover(false)}
+            onClick={handleDiscoverEcosystem}
           >
             Discover Our Ecosystem <img src={require('../images/arrow.png')} alt="Arrow" style={arrowStyle} />
           </button>
@@ -275,6 +299,7 @@ const HeroSection = () => {
              style={secondaryButtonStyle}
              onMouseEnter={() => setSecondaryHover(true)}
              onMouseLeave={() => setSecondaryHover(false)}
+             onClick={handleMeetOurVentures}
           >
             Meet Our Ventures <ArrowIcon />
           </button>

@@ -1,169 +1,191 @@
 import React from 'react';
 
-function CallToActionSection() {
+/**
+ * A call-to-action section component with video background.
+ * All styles are inline for easy integration.
+ */
+const CallToActionSection = () => {
+  // --- Video loading state ---
+  const [videoLoaded, setVideoLoaded] = React.useState(false);
+
+  const handleVideoLoad = () => {
+    console.log('Blue smoke video loaded successfully in CTA section');
+    setVideoLoaded(true);
+  };
+
+  const handleVideoError = (e) => {
+    console.error('Video failed to load in CTA section:', e.target.error);
+    setVideoLoaded(false);
+  };
+
+  // --- Inline CSS Styles ---
+  const styles = {
+    container: {
+      position: 'relative',
+      padding: '80px 20px',
+      textAlign: 'center',
+      color: '#ffffff',
+      fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      overflow: 'hidden',
+      minHeight: '400px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      // Fallback background
+      background: 'radial-gradient(circle at center, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%), #0f172a',
+    },
+    videoBackground: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      zIndex: 1,
+      opacity: videoLoaded ? 1 : 0,
+      transition: 'opacity 1s ease-in-out',
+    },
+    overlay: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      background: 'rgba(0, 0, 0, 0.5)', // Slightly darker overlay for better text readability
+      zIndex: 2,
+    },
+    content: {
+      position: 'relative',
+      zIndex: 20,
+      maxWidth: '800px',
+      margin: '0 auto',
+    },
+    title: {
+      fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+      fontWeight: '700',
+      lineHeight: 1.2,
+      marginBottom: '20px',
+      color: '#ffffff',
+    },
+    description: {
+      fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
+      lineHeight: 1.6,
+      marginBottom: '40px',
+      opacity: 0.9,
+      color: '#ffffff',
+    },
+    buttonContainer: {
+      display: 'flex',
+      flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: '20px',
+      flexWrap: 'wrap',
+    },
+    buttonBase: {
+      padding: '14px 28px',
+      borderRadius: '8px',
+      cursor: 'pointer',
+      fontSize: '16px',
+      fontWeight: '600',
+      textDecoration: 'none',
+      border: '2px solid transparent',
+      transition: 'all 0.3s ease',
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '10px',
+      minWidth: '200px',
+      justifyContent: 'center',
+    },
+    primaryButton: {
+      backgroundColor: '#ffffff',
+      color: '#000000',
+      border: '2px solid #ffffff',
+    },
+    secondaryButton: {
+      backgroundColor: 'transparent',
+      color: '#ffffff',
+      border: '2px solid rgba(255, 255, 255, 0.6)',
+    },
+  };
+
+  const [primaryHover, setPrimaryHover] = React.useState(false);
+  const [secondaryHover, setSecondaryHover] = React.useState(false);
+
+  const primaryButtonStyle = {
+    ...styles.buttonBase,
+    ...styles.primaryButton,
+    transform: primaryHover ? 'scale(1.05)' : 'scale(1)',
+    boxShadow: primaryHover ? '0 0 25px rgba(255, 255, 255, 0.4)' : 'none',
+  };
+
+  const secondaryButtonStyle = {
+    ...styles.buttonBase,
+    ...styles.secondaryButton,
+    transform: secondaryHover ? 'scale(1.05)' : 'scale(1)',
+    backgroundColor: secondaryHover ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+    borderColor: secondaryHover ? '#ffffff' : 'rgba(255, 255, 255, 0.6)',
+  };
+
   return (
-    <>
-      <style>
-        {`
-          /* Font import - You might need to add this to your public/index.html or global CSS */
-          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    <section style={styles.container}>
+      {/* Video Background - Blue Smoke Effect */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={styles.videoBackground}
+        onLoadedData={handleVideoLoad}
+        onError={handleVideoError}
+        onCanPlay={() => console.log('Blue smoke video can play in CTA')}
+        preload="auto"
+      >
+        <source src={require('../images/bluesmokeffect.mp4')} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      
+      {/* Dark overlay for better text readability */}
+      <div style={styles.overlay}></div>
 
-          .call-to-action-container {
-            font-family: 'Inter', sans-serif;
-            background-color: #1a1a40; /* Dark blue/purple background as a placeholder for the image */
-            /* This is where your background image will go */
-            /*
-            background-image: url('path/to/your/background-image.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            */
-            color: #ffffff; /* White text color */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 100px 20px; /* Adjust padding as needed */
-            min-height: 500px; /* Minimum height to give space */
-            position: relative; /* For z-index if you add overlays */
-            overflow: hidden; /* To prevent image overflow if not perfectly sized */
-          }
-
-          .cta-content {
-            max-width: 800px; /* Max width for the content to keep it readable */
-            z-index: 1; /* Ensure content is above any potential background overlays */
-          }
-
-          .cta-heading {
-            font-size: 3.5rem; /* Large heading font size */
-            font-weight: 700; /* Bold */
-            line-height: 1.2;
-            margin-bottom: 30px; /* Space below heading */
-          }
-
-          .cta-description {
-            font-size: 1.3rem; /* Description font size */
-            font-weight: 400; /* Regular weight */
-            line-height: 1.6;
-            margin-bottom: 40px; /* Space below description */
-            max-width: 700px; /* Slightly narrower for readability */
-            margin-left: auto;
-            margin-right: auto;
-          }
-
-          .cta-button {
-            display: inline-flex; /* Allows text and icon to be on the same line */
-            align-items: center;
-            gap: 8px; /* Space between text and icon */
-            padding: 14px 28px; /* Button padding */
-            background-color: transparent; /* Transparent background */
-            border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent white border */
-            border-radius: 8px; /* Slightly rounded corners */
-            color: #ffffff; /* White text */
-            font-size: 1.1rem; /* Button text size */
-            font-weight: 600; /* Semi-bold */
-            text-decoration: none; /* Remove underline for link */
-            transition: all 0.3s ease-in-out; /* Smooth transitions */
-            cursor: pointer;
-          }
-
-          .cta-button:hover {
-            background-color: rgba(255, 255, 255, 0.1); /* Subtle white background on hover */
-            border-color: #ffffff; /* Solid white border on hover */
-            transform: translateY(-2px); /* Slight lift effect */
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2); /* Subtle glow/shadow */
-          }
-
-          .cta-button-icon {
-            width: 20px; /* Icon size */
-            height: 20px;
-            stroke-width: 2; /* Adjust stroke thickness */
-            color: #ffffff; /* White icon */
-          }
-
-          /* Media queries for responsiveness */
-          @media (max-width: 768px) {
-            .call-to-action-container {
-              padding: 80px 15px;
-            }
-            .cta-heading {
-              font-size: 2.5rem;
-              margin-bottom: 20px;
-            }
-            .cta-description {
-              font-size: 1rem;
-              margin-bottom: 30px;
-            }
-            .cta-button {
-              padding: 12px 24px;
-              font-size: 1rem;
-            }
-            .cta-button-icon {
-              width: 18px;
-              height: 18px;
-            }
-          }
-
-          @media (max-width: 480px) {
-            .cta-heading {
-              font-size: 2rem;
-            }
-            .cta-description {
-              font-size: 0.9rem;
-            }
-            .cta-button {
-              padding: 10px 20px;
-              font-size: 0.9rem;
-            }
-          }
-        `}
-      </style>
-
-      <div className="call-to-action-container">
-        {/* Placeholder for background image. You will update this. */}
-        {/*
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundImage: 'url("path/to/your/image.jpg")', // Your image path here
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          zIndex: 0, // Ensure it's behind the content
-          opacity: 0.8, // Adjust opacity if needed to make text more readable
-        }}></div>
-        */}
-
-        <div className="cta-content">
-          <h2 className="cta-heading">
-            Let's Build the Future, Together.
-          </h2>
-          <p className="cta-description">
-            Transform your business with cutting-edge AI, sustainable solutions,
-            and a future-ready workforce that drives impact and innovation.
-          </p>
-          {/* eslint-disable jsx-a11y/anchor-is-valid */}
-          <a href="#" role="button" className="cta-button">
-            Start a Conversation
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="cta-button-icon"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+      {/* Content */}
+      <div style={styles.content}>
+        <h2 style={styles.title}>
+          Ready to Transform Your Business?
+        </h2>
+        <p style={styles.description}>
+          Join the innovation revolution. Let's build the future of your industry together 
+          with cutting-edge AI solutions and digital transformation strategies.
+        </p>
+        <div style={styles.buttonContainer}>
+          <button
+            style={primaryButtonStyle}
+            onMouseEnter={() => setPrimaryHover(true)}
+            onMouseLeave={() => setPrimaryHover(false)}
+            onClick={() => console.log('Get Started clicked')}
+          >
+            Get Started Today
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 17L17 7"></path>
+              <path d="M7 7h10v10"></path>
             </svg>
-          </a>
+          </button>
+          <button
+            style={secondaryButtonStyle}
+            onMouseEnter={() => setSecondaryHover(true)}
+            onMouseLeave={() => setSecondaryHover(false)}
+            onClick={() => console.log('Schedule Call clicked')}
+          >
+            Schedule a Call
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </button>
         </div>
       </div>
-    </>
+    </section>
   );
-}
+};
 
 export default CallToActionSection;

@@ -70,13 +70,6 @@ const FounderVoiceSection = () => {
     </svg>
   );
 
-  // --- SVG for the new, subtle Quotation Marks ---
-  // const QuoteIcon = ({ style }) => (
-  //   <svg width="50" height="40" viewBox="0 0 50 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style={style}>
-  //       <path d="M15.625 0V18.75H7.8125L0 37.5H9.375L18.75 18.75V0H15.625ZM46.875 0V18.75H39.0625L31.25 37.5H40.625L50 18.75V0H46.875Z"/>
-  //   </svg>
-  // );
-
   // --- Inline CSS Styles ---
   const styles = {
     container: {
@@ -310,7 +303,7 @@ const FounderVoiceSection = () => {
   // --- Render mobile version ---
   if (isMobile) {
     return (
-      <div style={styles.container}>
+      <div style={styles.container} id="founder-voice-section">
         <h2 style={styles.mainHeading}>Voices That Drive Vision</h2>
         <div style={styles.contentWrapper}>
           {voices.map((voice, index) => (
@@ -342,7 +335,7 @@ const FounderVoiceSection = () => {
 
   // --- Render desktop version ---
   return (
-    <div style={styles.container}>
+    <div style={styles.container} id="founder-voice-section">
       <div style={styles.contentWrapper}>
         {/* Left Arrow - Animated visibility */}
         <button
